@@ -1,4 +1,5 @@
 development:
+  host: localhost
   adapter: postgresql
   database: db/development
   pool: 5
