@@ -15,12 +15,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @recent_orders = current_user.recent_orders
+
     if current_user.admin
       @user = User.find(params[:id])
     else
       @user = User.find(current_user.id)
     end
-    @recent_orders = current_user.recent_orders
   end
 
   def new

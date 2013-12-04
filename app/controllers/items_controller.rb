@@ -5,18 +5,17 @@ class ItemsController < ApplicationController
 
   def index
     redirect_to new_order_path unless cookies[:order_id]
+
+    @categories = Category.all
+
     if params["Categories"]
       @category = Category.find(params["Categories"])
       @items = Item.active.find_all {|item| item.categories.include? @category}
     else
       @items = Item.active
     end
-    @categories = Category.all
-    if cookies[:order_id]
-      @order = Order.find(cookies[:order_id])
-    else
-      @order = nil
-    end
+
+    set_order(cookies[:order_id])
   end
 
   def new
@@ -33,11 +32,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    if cookies[:order_id]
-      @order = Order.find(cookies[:order_id])
-    else
-      @order = nil
-    end
+    set_order(cookies[:order_id])
   end
 
   def edit
@@ -71,4 +66,11 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :description, :price, :image, :active)
   end
 
+  def set_order(order)
+    if order
+      @order = Order.find(order)
+    else
+      @order = nil
+    end
+  end
 end

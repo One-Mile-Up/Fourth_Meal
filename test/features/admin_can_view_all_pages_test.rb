@@ -3,10 +3,10 @@ require "./test/test_helper"
 class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
 
   test "admin can view all users" do
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
-    user2 = User.create({username: 'bob_bob', password: 'password'})
+    user2 = User.create({username: 'bob_bob', password: 'password', email: "bob_bob@example.com"})
 
     visit root_path
     click_on "Login"
@@ -20,10 +20,10 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
   end
 
   test "admin can view individual users" do
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
-    user2 = User.create({username: 'bob_bob', password: 'password'})
+    user2 = User.create({username: 'bob_bob', password: 'password', email: "bob_bob@example.com"})
 
     visit root_path
     click_on "Login"
@@ -37,13 +37,12 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
   end
 
   test "admin can create item" do
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "example@example.com"})
     user1.admin = true
-    user1.save
+    user1.save!
 
     visit root_path
     click_on "Login"
-
     fill_in "Username", with: 'admin'
     fill_in "Password", with: 'password'
     click_button "Login"
@@ -59,7 +58,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
 
   test "admin can edit an item" do
     @item = Item.create({title: "Burger", description: "Loafy goodness", price: '1'})
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
 
@@ -82,7 +81,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     order = Order.new
     order.save
     order.items.create(item)
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
 
@@ -105,7 +104,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     category2 = Category.create({name: "Lunch"})
     item.categories << category1
 
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
     visit root_path
@@ -124,7 +123,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     category2 = Category.create({name: "Lunch"})
     item.categories << category1
 
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
     visit root_path
