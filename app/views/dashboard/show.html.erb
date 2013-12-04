@@ -13,14 +13,14 @@
   <br>
   <br>
   <table>
-  <% @items.each do |item| %>
+  <% @dashboard.items.each do |item| %>
     <tr>
       <td><%= link_to item.title, item_path(item.id) %></td>
       <td><%= link_to "Edit", edit_item_path(item.id), {:class => "btn btn-warning edit-item" } %></td>
       <td></td>
     </tr>
   <% end %>
-  </table>
+  </table:
   </div>
 
   <div class="categories-list">
@@ -30,7 +30,7 @@
     <br>
     <br>
     <table>
-    <% @categories.each do |category| %>
+    <% @dashboard.categories.each do |category| %>
       <tr>
         <td><%= link_to category.name, category_path(category.id) %></td>
         <td><%= link_to "Edit", edit_category_path(category.id), {:class=> "btn btn-warning edit-category" } %></td>
@@ -49,7 +49,7 @@
     <h3>Users</h3>
     <a id="users-list"></a>
     <table>
-     <% @users.each do |user| %>
+     <% @dashboard.users.each do |user| %>
       <tr>
         <td><%= link_to user.username, user_path(user.id) %></td>
       </tr>
