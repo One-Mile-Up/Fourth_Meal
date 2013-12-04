@@ -1,14 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:new, :create, :edit]
-  before_action :require_admin, only: [:index, :dashboard]
+  before_action :require_admin, only: [:index]
 
-  def dashboard
-    @items = Item.all
-    @categories = Category.all
-    @orders = Order.all
-    @users = User.all
-  end
 
   def index
     @users = User.all

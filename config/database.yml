@@ -1,5 +1,4 @@
 development:
-  host: localhost
   adapter: postgresql
   database: db/development
   host: localhost
@@ -12,7 +11,6 @@ development:
 test:
   adapter: sqlite3
   database: db/test
-  host: localhost
   pool: 5
   timeout: 5000
 
