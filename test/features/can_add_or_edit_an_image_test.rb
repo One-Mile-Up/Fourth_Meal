@@ -3,7 +3,7 @@ require "./test/test_helper"
 class CanAddOrEditAnImageTest < Capybara::Rails::TestCase
 
   test "can add an image to an item" do
-    user1 = User.new({username: 'admin', password: 'password'})
+    user1 = User.new({username: 'admin', password: 'password', email: 'admin@example.com'})
     user1.admin = true
     user1.save
 
@@ -19,7 +19,6 @@ class CanAddOrEditAnImageTest < Capybara::Rails::TestCase
 
     visit edit_item_path(item.id)
     attach_file("item_image", "./app/assets/images/deviled_eggs.jpg")
-    save_and_open_page
     click_button "Update"
   end
 
