@@ -157,11 +157,13 @@ restaurant8 = Restaurant.find_or_create_by(name: "Casimir's Cupcakes")
 restaurant9 = Restaurant.find_or_create_by(name: "Frank Make Toast")
 restaurant10 = Restaurant.find_or_create_by(name: "Kytrinyx Steakhouse")
 
-# item1 = Item.new(title: "Pork Sandwich", description: "Delicious", price: '5', restaurant_id: restaurant1.id)
-# item1.save!
-item2 = Item.new(title: "PBR", description: "Hiptastic", price: '3', restaurant_id: restaurant2.id)
-item2.save!
-restaurant2.items << item2
+restaurants = [restaurant1, restaurant2, restaurant3, restaurant4, restaurant5, restaurant6, restaurant7, restaurant8, restaurant9, restaurant10]
+restaurants.each do |restaurant|
+  10000.times do |x|
+    item = Item.find_or_create_by(title: "#{restaurant.name} item #{x}", description: "Hiptastic", price: '3', restaurant_id: restaurant.id)
+    puts item
+ end
+end
 
 usr = User.new({username: 'wvmitchell', email: 'wvmitchell@gmail.com', password: 'password'})
 usr.admin = true
