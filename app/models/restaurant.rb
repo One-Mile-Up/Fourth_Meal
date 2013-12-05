@@ -1,5 +1,5 @@
 class Restaurant < ActiveRecord::Base
-
+  has_many :items
   validates_uniqueness_of :name
 
   def name_to_slug(new_name)

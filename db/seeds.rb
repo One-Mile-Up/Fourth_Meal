@@ -146,9 +146,27 @@ coco_cake.save
 
 desserts.items << coco_cake
 
+restaurant1 = Restaurant.find_or_create_by(name: "Billy's BBQ")
+restaurant2 = Restaurant.find_or_create_by(name: "Dive Bar")
+restaurant3 = Restaurant.find_or_create_by(name: "Hacienda Pequeen")
+restaurant4 = Restaurant.find_or_create_by(name: "Rolen's Pizza")
+restaurant5 = Restaurant.find_or_create_by(name: "Go Pho Yourself")
+restaurant6 = Restaurant.find_or_create_by(name: "Lauren's Candy Shop")
+restaurant7 = Restaurant.find_or_create_by(name: "Homer's Doughnut Shop")
+restaurant8 = Restaurant.find_or_create_by(name: "Casimir's Cupcakes")
+restaurant9 = Restaurant.find_or_create_by(name: "Frank Make Toast")
+restaurant10 = Restaurant.find_or_create_by(name: "Kytrinyx Steakhouse")
+
+# item1 = Item.new(title: "Pork Sandwich", description: "Delicious", price: '5', restaurant_id: restaurant1.id)
+# item1.save!
+item2 = Item.new(title: "PBR", description: "Hiptastic", price: '3', restaurant_id: restaurant2.id)
+item2.save!
+restaurant2.items << item2
+
 usr = User.new({username: 'wvmitchell', email: 'wvmitchell@gmail.com', password: 'password'})
 usr.admin = true
 usr.save
 
 User.create({username: 'bob', email: 'bob@example.com', password: 'password'})
+
 
