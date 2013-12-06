@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110232636) do
+ActiveRecord::Schema.define(version: 20131205203520) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131110232636) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "restaurant_id"
   end
 
   create_table "order_items", force: true do |t|
@@ -55,6 +56,13 @@ ActiveRecord::Schema.define(version: 20131110232636) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status",     default: "pending"
+  end
+
+  create_table "restaurants", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "users", force: true do |t|
