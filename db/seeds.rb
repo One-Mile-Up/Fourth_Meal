@@ -164,6 +164,13 @@ restaurants.each do |restaurant|
  end
 end
 
+restaurants.each do |restaurant|
+  10.times do |x|
+    category = Category.find_or_create_by(name: "#{restaurant.name} category #{x}", restaurant_id: restaurant.id)
+    puts category
+ end
+end
+
 usr = User.new({username: 'wvmitchell', email: 'wvmitchell@gmail.com', password: 'password'})
 usr.admin = true
 usr.save
