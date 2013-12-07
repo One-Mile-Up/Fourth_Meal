@@ -25,6 +25,28 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
     visit "/dive-bar"
     assert_content page, "PBR"
     refute_content page, "Pork Sandwich"
-   end
+  end
+
+  test "restaurant can be created on new page" do
+    visit "/restaurants/new"
+    assert_content page, "New Restaurant Form"
+    # while on "new" page - user can put in restaurant name
+    # url
+    # description
+  end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,4 +5,7 @@ class RestaurantsController < ApplicationController
     # set_order(cookies[:order_id])
   end
 
+  def new
+    
+  end
 end
