@@ -31,7 +31,6 @@ snacks.items << spoon_bread
 tomato_soup = Item.new(title: "Tomato Soup", description: "Roasted tomato soup with oozy grilled cheese", price: '6')
 tomato_soup.image = open("https://platable.s3.amazonaws.com/items/images/000/000/004/small/tomato_soup.jpg")
 tomato_soup.save
-
 soups.items << tomato_soup
 
 green_bean_salad = Item.new(title: "Green Bean Salad", description: "Fresh green beans with goat cheese and pecans", price: '8')
@@ -162,6 +161,13 @@ restaurants.each do |restaurant|
   50.times do |x|
     item = Item.find_or_create_by(title: "#{restaurant.name} item #{x}", description: "Hiptastic", price: '3', restaurant_id: restaurant.id)
     puts item
+ end
+end
+
+restaurants.each do |restaurant|
+  10.times do |x|
+    category = Category.find_or_create_by(name: "#{restaurant.name} category #{x}", restaurant_id: restaurant.id)
+    puts category
  end
 end
 

@@ -21,4 +21,7 @@ DinnerDash::Application.routes.draw do
 
   get "/:restaurant_slug", to: "restaurants#show", as: "restaurant"
   resources :restaurants
+
+  get "/:restaurant_slug/categories", to: "categories#index", as: "restaurant_item_categories"
+  resources :restaurants, :categories
 end
