@@ -4,6 +4,10 @@ class OrderItem < ActiveRecord::Base
 
   validates_numericality_of :quantity, greater_than: 0, only_integer: true
 
+  def restaurant
+    item.restaurant
+  end
+
   def increase_quantity
       @quantity ||= 0
       @quantity += 1

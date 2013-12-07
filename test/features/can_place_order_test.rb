@@ -4,8 +4,8 @@ class CanPlaceOrderTest < Capybara::Rails::TestCase
 
 
   test "can add an item to the current order" do
-    item = Item.new(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1')
-    item.save
+    r1 = Restaurant.find_or_create_by( name: "Billy's BBQ")
+    item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1', restaurant: r1)
     visit root_path
     within("#item_1") do
       click_on "Add to Order"
@@ -15,7 +15,8 @@ class CanPlaceOrderTest < Capybara::Rails::TestCase
   end
 
   test "cannot set the quantity to a negative number" do
-    item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1')
+    r1 = Restaurant.find_or_create_by( name: "Billy's BBQ")
+    item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1', restaurant_id: r1.id)
     order = Order.create
     order.items << item
 
@@ -29,8 +30,12 @@ class CanPlaceOrderTest < Capybara::Rails::TestCase
 
 
   test "can add multiple items to order without logging in" do
-    Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1')
-    Item.create(title: 'Hard Boiled Eggs', description: '12 hard eggs', price: '1')
+    r1 = Restaurant.find_or_create_by( name: "Billy's BBQ")
+    r2 = Restaurant.find_or_create_by( name: "Dive Bar")
+
+    item1 = Item.find_or_create_by(title: 'Deviled Eggs', description: '12 lucious eggs', price: '1', restaurant_id: r1.id)
+    item2 = Item.find_or_create_by(title: 'Hard Boiled Eggs', description: '12 hard eggs', price: '1', restaurant_id: r2.id)
+
     visit root_path
     within("#item_1") do
       click_on "Add to Order"
@@ -48,14 +53,48 @@ class CanPlaceOrderTest < Capybara::Rails::TestCase
     end
   end
 
+  test " items added to cart are seperated by restaurant" do
+    r1 = Restaurant.find_or_create_by( name: "Billy's BBQ")
+    r2 = Restaurant.find_or_create_by( name: "Dive Bar")
+
+    item1 = Item.find_or_create_by(title: 'Deviled Eggs', description: '12 lucious eggs', price: '1', restaurant_id: r1.id)
+    item2 = Item.find_or_create_by(title: 'Hard Boiled Eggs', description: '12 hard eggs', price: '1', restaurant_id: r2.id)
+
+    visit root_path
+    visit restaurant_path(r1.slug)
+    within("#item_#{item1.id}") do
+      click_on "Add to Order"
+    end
+
+    visit restaurant_path(r2.slug)
+    within("#item_#{item2.id}") do
+      click_on "Add to Order"
+    end
+
+    visit order_path(Order.first)
+    within("#restaurant_#{r1.id}") do
+      assert_content page, "Deviled Eggs"
+    end
+
+    within("#restaurant_#{r2.id}") do
+      assert_content page, "Hard Boiled Eggs"
+    end
+
+  end
+
   test "can add multiple instances of same item to order" do
-    Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1')
-    Item.create(title: 'Hard Boiled Eggs', description: '12 hard eggs', price: '1')
+    r1 = Restaurant.find_or_create_by( name: "Billy's BBQ")
+    r2 = Restaurant.find_or_create_by( name: "Dive Bar")
+
+    item1 = Item.find_or_create_by(title: 'Deviled Eggs', description: '12 lucious eggs', price: '1', restaurant_id: r1.id)
+    item2 = Item.find_or_create_by(title: 'Hard Boiled Eggs', description: '12 hard eggs', price: '1', restaurant_id: r2.id)
+
 
     visit root_path
     within("#item_1") do
       click_on "Add to Order"
     end
+
     within("#item_1") do
       click_on "Add to Order"
     end
@@ -67,7 +106,8 @@ class CanPlaceOrderTest < Capybara::Rails::TestCase
   end
 
   test "user can adjust items in cart" do
-    item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1')
+    r1 = Restaurant.find_or_create_by( name: "Billy's BBQ")
+    item = Item.find_or_create_by(title: 'Deviled Eggs', description: '12 lucious eggs', price: '1', restaurant_id: r1.id)
     order = Order.create
     order.items << item
     visit order_path(order)

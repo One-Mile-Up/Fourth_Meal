@@ -4,3 +4,15 @@ LOG:  autovacuum launcher started
 LOG:  database system was shut down at 2013-12-04 15:30:41 MST
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
+LOG:  database system was shut down at 2013-12-06 14:14:58 MST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  autovacuum launcher shutting down
+FATAL:  terminating connection due to administrator command
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2013-12-06 14:20:39 MST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "db/development" does not exist
