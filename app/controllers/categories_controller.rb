@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :require_admin
 
   def index
-    @categories = Category.all
+    @categories = Category.categories_by_slug(params[:restaurant_slug])
   end
 
   def new
@@ -28,6 +28,11 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.update(params[:id], category_params)
     redirect_to categories_path
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    # set_order(cookies[:order_id])
   end
 
   private
