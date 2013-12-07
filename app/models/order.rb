@@ -7,6 +7,12 @@ class Order < ActiveRecord::Base
     where(status: "pending")
   end
 
+  def order_items_by_restaurant
+    order_items.group_by do |item|
+      item.restaurant
+    end
+  end
+
   def total_items
     order_items.inject(0) do |sum, order_item|
       sum + order_item.quantity

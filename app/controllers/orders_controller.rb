@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     elsif params[:id]
       @order = Order.find(params[:id])
     end
-    @order_items = @order.order_items
+    @order_items = @order.order_items_by_restaurant
   end
 
   def checkout

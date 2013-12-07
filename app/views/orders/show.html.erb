@@ -3,8 +3,12 @@
 
 
 <% if @order_items.count > 0 %>
+   <% @order_items.each_pair do |restaurant, order_items| %>
   <table class="table">
     <thead>
+    <tr>
+      <th colspan="5"> <%= restaurant.name %> </th>
+  </tr>
       <tr>
         <th>Dish</th>
         <th>Description</th>
@@ -14,8 +18,9 @@
       </tr>
     </thead>
 
-   <tbody>
-  <% @order_items.each do |order_item| %>
+  <% order_items.each do |order_item| %>
+    <div id="restaurant_<%= restaurant.id%>">
+      <tbody>
     <% item = order_item.item %>
     <tr id="item_<%= item.id %>">
       <td class="item-title"><%= link_to item.title, item_path(item.id)  %></td>
@@ -29,8 +34,10 @@
       <td>
         <%= link_to "x", order_item_path(order_item), {method: 'delete', :class => "btn btn-danger remove-item", id: 'remove_item'} %></td>
     </tr>
-  <% end %>
   </tbody>
+</div>
+  <% end %>
+  <% end %>
   <tfoot>
     <tr>
       <td></td>
