@@ -9,4 +9,9 @@ class RestaurantsControllerTest < ActionController::TestCase
     assert_response 200
   end
 
+  test "restaurant has a new page" do
+    get :new
+    assert_response 200
+  end
+
 end

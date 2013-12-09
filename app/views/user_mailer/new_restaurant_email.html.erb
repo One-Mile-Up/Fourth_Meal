@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.username %>, your new restaurant has been created!</h1>
+
+    <p>Vist your new restaurant <%= link_to @restaurant.name, restaurant_path(@restaurant.slug)%></p>
+      
+  </body>
+</html>
