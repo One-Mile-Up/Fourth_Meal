@@ -1,9 +1,9 @@
 class UserMailer < ActionMailer::Base
-  default from: "customer_service@platable.com"
+  default from: "customer_service@hunger-gains.com"
 
   def welcome_email(user)
     @user = user
-    @url = "platable.herokuapp.com/login"
+    @url = "hunger-gains.herokuapp.com/login"
     mail(to: @user.email, subject: "Welcome to Platable")
   end
 
@@ -11,14 +11,14 @@ class UserMailer < ActionMailer::Base
     @user = user
     @order = order
     @items = order.items
-    @url = "platable.herokuapp.com"
+    @url = "hunger-gains.herokuapp.com"
     mail(to: @user.email, subject: "Your Grub is Forthcoming!")
   end
 
   def new_restaurant_email(user, restaurant)
     @user = user
     @restaurant = restaurant
-    @url = "platable.herokuapp.com"
+    @url = "hunger-gains.herokuapp.com"
     mail(to: @user.email, subject: "Your new restaurant, #{@restaurant.name} is ready to take orders!")
   end
 end
