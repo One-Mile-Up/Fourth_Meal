@@ -14,4 +14,11 @@ class UserMailer < ActionMailer::Base
     @url = "platable.herokuapp.com"
     mail(to: @user.email, subject: "Your Grub is Forthcoming!")
   end
+
+  def new_restaurant_email(user, restaurant)
+    @user = user
+    @restaurant = restaurant
+    @url = "platable.herokuapp.com"
+    mail(to: @user.email, subject: "Your new restaurant, #{@restaurant.name} is ready to take orders!")
+  end
 end
