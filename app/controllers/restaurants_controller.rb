@@ -13,12 +13,13 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.save
-    flash.notice = @restaurant.name + " sucessfully created!"
+
     UserMailer.new_restaurant_email(current_user, @restaurant).deliver
+    flash.notice = @restaurant.name + " sucessfully created!"
 
     redirect_to restaurant_path(@restaurant.slug)
   end
-    
+
   def restaurant_params
     params.require(:restaurant).permit(:name, :description, :slug)
   end
