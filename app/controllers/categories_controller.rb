@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :require_login
-  before_action :require_admin
+  before_action :require_login, except:[:index]
+  before_action :require_admin, except:[:index]
 
   def index
     @categories = Category.categories_by_slug(params[:restaurant_slug])
