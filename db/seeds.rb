@@ -145,19 +145,30 @@ coco_cake.save
 
 desserts.items << coco_cake
 
-restaurant1 = Restaurant.find_or_create_by(name: "Billy's BBQ", slug: "billys-bbq", description: "stuff")
-restaurant2 = Restaurant.find_or_create_by(name: "Dive Bar", slug: "dive-bar", description: "x")
-restaurant3 = Restaurant.find_or_create_by(name: "Hacienda Pequeen", slug: "hacienda-pequeen", description: "x")
-restaurant4 = Restaurant.find_or_create_by(name: "Rolen's Pizza", slug: "rolens-pizza", description: "x")
-restaurant5 = Restaurant.find_or_create_by(name: "Go Pho Yourself", slug: "go-pho-yourself", description: "x")
-restaurant6 = Restaurant.find_or_create_by(name: "Lauren's Candy Shop", slug: "laurens-candy-shop", description: "x")
-restaurant7 = Restaurant.find_or_create_by(name: "Homer's Doughnut Shop", slug: "homers-doughnut-shop", description: "x")
-restaurant8 = Restaurant.find_or_create_by(name: "Casimir's Cupcakes", slug: "casimirs-cupcakes", description: "x")
-restaurant9 = Restaurant.find_or_create_by(name: "Frank Make Toast", slug: "frank-make-toast", description: "x")
-restaurant10 = Restaurant.find_or_create_by(name: "Kytrinyx Steakhouse", slug: "kytrinyx-steakhouse", description: "x")
+restaurant1 = Restaurant.new(name: "Billy's BBQ", slug: "billys-bbq", description: "stuff")
+puts restaurant1.slug
+restaurant2 = Restaurant.new(name: "Dive Bar", slug: "dive-bar", description: "x")
+puts restaurant2.slug
+restaurant3 = Restaurant.new(name: "Hacienda Pequeen", slug: "hacienda-pequeen", description: "x")
+puts restaurant3.slug
+restaurant4 = Restaurant.new(name: "Rolen's Pizza", slug: "rolens-pizza", description: "x")
+puts restaurant4.slug
+restaurant5 = Restaurant.new(name: "Go Pho Yourself", slug: "go-pho-yourself", description: "x")
+puts restaurant5.slug
+restaurant6 = Restaurant.new(name: "Lauren's Candy Shop", slug: "laurens-candy-shop", description: "x")
+puts restaurant6.slug
+restaurant7 = Restaurant.new(name: "Homer's Doughnut Shop", slug: "homers-doughnut-shop", description: "x")
+puts restaurant7.slug
+restaurant8 = Restaurant.new(name: "Casimir's Cupcakes", slug: "casimirs-cupcakes", description: "x")
+puts restaurant8.slug
+restaurant9 = Restaurant.new(name: "Frank Make Toast", slug: "frank-make-toast", description: "x")
+puts restaurant9.slug
+restaurant10 = Restaurant.new(name: "Kytrinyx Steakhouse", slug: "kytrinyx-steakhouse", description: "x")
+puts restaurant10.slug
 
 restaurants = [restaurant1, restaurant2, restaurant3, restaurant4, restaurant5, restaurant6, restaurant7, restaurant8, restaurant9, restaurant10]
 restaurants.each do |restaurant|
+  restaurant.save
   50.times do |x|
     item = Item.find_or_create_by(title: "#{restaurant.name} item #{x}", description: "Hiptastic", price: '3', restaurant_id: restaurant.id)
     puts item
