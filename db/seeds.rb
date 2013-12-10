@@ -146,15 +146,15 @@ coco_cake.save
 desserts.items << coco_cake
 
 restaurant1 = Restaurant.find_or_create_by(name: "Billy's BBQ", slug: "billys-bbq", description: "stuff")
-restaurant2 = Restaurant.find_or_create_by(name: "Dive Bar")
-restaurant3 = Restaurant.find_or_create_by(name: "Hacienda Pequeen")
-restaurant4 = Restaurant.find_or_create_by(name: "Rolen's Pizza")
-restaurant5 = Restaurant.find_or_create_by(name: "Go Pho Yourself")
-restaurant6 = Restaurant.find_or_create_by(name: "Lauren's Candy Shop")
-restaurant7 = Restaurant.find_or_create_by(name: "Homer's Doughnut Shop")
-restaurant8 = Restaurant.find_or_create_by(name: "Casimir's Cupcakes")
-restaurant9 = Restaurant.find_or_create_by(name: "Frank Make Toast")
-restaurant10 = Restaurant.find_or_create_by(name: "Kytrinyx Steakhouse")
+restaurant2 = Restaurant.find_or_create_by(name: "Dive Bar", slug: "dive-bar", description: "x")
+restaurant3 = Restaurant.find_or_create_by(name: "Hacienda Pequeen", slug: "hacienda-pequeen", description: "x")
+restaurant4 = Restaurant.find_or_create_by(name: "Rolen's Pizza", slug: "rolens-pizza", description: "x")
+restaurant5 = Restaurant.find_or_create_by(name: "Go Pho Yourself", slug: "go-pho-yourself", description: "x")
+restaurant6 = Restaurant.find_or_create_by(name: "Lauren's Candy Shop", slug: "laurens-candy-shop", description: "x")
+restaurant7 = Restaurant.find_or_create_by(name: "Homer's Doughnut Shop", slug: "homers-doughnut-shop", description: "x")
+restaurant8 = Restaurant.find_or_create_by(name: "Casimir's Cupcakes", slug: "casimirs-cupcakes", description: "x")
+restaurant9 = Restaurant.find_or_create_by(name: "Frank Make Toast", slug: "frank-make-toast", description: "x")
+restaurant10 = Restaurant.find_or_create_by(name: "Kytrinyx Steakhouse", slug: "kytrinyx-steakhouse", description: "x")
 
 restaurants = [restaurant1, restaurant2, restaurant3, restaurant4, restaurant5, restaurant6, restaurant7, restaurant8, restaurant9, restaurant10]
 restaurants.each do |restaurant|
