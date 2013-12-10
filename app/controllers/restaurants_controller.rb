@@ -33,7 +33,9 @@ class RestaurantsController < ApplicationController
       end
 	redirect_to root_path
     elsif @restaurant.approved?
-      UserMailer.new_restaurant_email(current_user, @restaurant).deliver
+      @restaurant.users.each do |user|
+      UserMailer.new_restaurant_email(user, @restaurant).deliver
+      end
       redirect_to restaurant_path(@restaurant.slug)
     else
        redirect_to restaurant_path(@restaurant.slug)
