@@ -10,4 +10,8 @@ class Restaurant < ActiveRecord::Base
     status ==  "Declined"
   end
 
+  def approved?
+    status == "Approved"
+  end
+
 end
