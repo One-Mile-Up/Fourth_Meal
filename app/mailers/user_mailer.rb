@@ -28,4 +28,11 @@ class UserMailer < ActionMailer::Base
     @url = "hunger-gains.herokuapp.com"
     mail(to:admin.email, subject: "Restaurant: #{@restaurant.name} is waiting to be approved")
   end
+
+  def declined_restaurant_email(user, restaurant)
+    @user = user
+    @restaurant = restaurant
+    @url = "hunger-gains.herokuapp.com"
+    mail(to:user.email, subject: "Restaurant: #{@restaurant.name} has been declined")
+  end
 end

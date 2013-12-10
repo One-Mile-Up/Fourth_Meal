@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
     User.admins.each do |admin|
       UserMailer.pending_restaurant_email(admin, @restaurant).deliver
     end
-    flash.notice = @restaurant.name + "is pending approval."
+    flash.notice = @restaurant.name + " is pending approval."
 
     redirect_to restaurant_path(@restaurant.slug)
   end
