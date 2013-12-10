@@ -145,7 +145,7 @@ coco_cake.save
 
 desserts.items << coco_cake
 
-restaurant1 = Restaurant.find_or_create_by(name: "Billy's BBQ")
+restaurant1 = Restaurant.find_or_create_by(name: "Billy's BBQ", slug: "billys-bbq", description: "stuff")
 restaurant2 = Restaurant.find_or_create_by(name: "Dive Bar")
 restaurant3 = Restaurant.find_or_create_by(name: "Hacienda Pequeen")
 restaurant4 = Restaurant.find_or_create_by(name: "Rolen's Pizza")

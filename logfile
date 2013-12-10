@@ -16,3 +16,10 @@ LOG:  database system was shut down at 2013-12-06 14:20:39 MST
 LOG:  database system is ready to accept connections
 LOG:  autovacuum launcher started
 FATAL:  database "db/development" does not exist
+LOG:  database system was shut down at 2013-12-09 17:42:28 MST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "db/development" does not exist
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There are 2 other sessions using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"

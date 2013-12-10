@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   has_many :orders
+  has_many :roles
+  has_many :restaurants, through: :roles
 
   def associate_order(order_id)
     orders << Order.find(order_id)
@@ -13,5 +15,9 @@ class User < ActiveRecord::Base
 
   def recent_orders
     orders.where(status: 'completed')
+  end
+
+  def self.admins
+    self.where(admin: true)
   end
 end

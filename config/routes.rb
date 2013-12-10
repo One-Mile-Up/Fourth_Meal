@@ -19,7 +19,11 @@ DinnerDash::Application.routes.draw do
 
   get "dashboard" => "dashboard#show", as: 'dashboard'
 
-  get "/:restaurant_slug", to: "restaurants#show", as: "restaurant"
+  get "/:restaurant_slug", to: "items#index", as: "restaurant"
+  put "/:restaurant_slug", to: "restaurants#update"
+  get "/:restaurant_slug/dashboard", to: "restaurants#show"
+  get "/:restaurant_slug/items/new", to: "items#new", as: "new_restaurant_item"
+  put "/:restaurant_slug/items/new", to: "items#create"
   resources :restaurants
 
   get "/:restaurant_slug/categories", to: "categories#index", as: "restaurant_item_categories"

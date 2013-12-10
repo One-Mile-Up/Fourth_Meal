@@ -21,4 +21,11 @@ class UserMailer < ActionMailer::Base
     @url = "hunger-gains.herokuapp.com"
     mail(to: @user.email, subject: "Your new restaurant, #{@restaurant.name} is ready to take orders!")
   end
+
+  def pending_restaurant_email(admin, restaurant)
+    @admin = admin
+    @restaurant = restaurant
+    @url = "hunger-gains.herokuapp.com"
+    mail(to:admin.email, subject: "Restaurant: #{@restaurant.name} is waiting to be approved")
+  end
 end

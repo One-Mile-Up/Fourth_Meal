@@ -31,7 +31,16 @@ class RestaurantTest < ActiveSupport::TestCase
   test "restaurant name creates slug name" do
     restaurant1 = Restaurant.new
     restaurant1.name = "Billy's BBQ"
+    restaurant1.slug = "billys-bbq"
 
     assert_equal "billys-bbq", restaurant1.slug
+  end
+
+  test "test restaurants have users" do
+     user = User.create({username: 'user', email: 'user@example.com', password: 'password'})
+     restaurant = Restaurant.create(name: "place", slug: "place", description: "place")
+     Role.create( user_id: user.id, restaurant_id: restaurant.id)
+
+     assert restaurant.users.include?(user)
   end
 end

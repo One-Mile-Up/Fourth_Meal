@@ -1,4 +1,9 @@
 class Dashboard
+
+  def restaurants
+    Restaurant.all
+  end
+
   def items
     Item.all
   end
