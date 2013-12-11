@@ -67,6 +67,11 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
+    restaurant1 = Restaurant.new(slug: "billys-bbq", name: "Billy's BBQ")
+    restaurant1.users << user1
+    restaurant1.items << @item
+    restaurant1.status = "Approved"
+    restaurant1.save!
 
     visit root_path
     click_on "Login"
@@ -74,7 +79,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     fill_in "Username", with: 'admin'
     fill_in "Password", with: 'password'
     click_button "Login"
-    visit edit_item_path(@item)
+    visit edit_restaurant_item_path(restaurant1.slug, @item)
     fill_in "Description", :with => "Juicy delicious meat"
     click_button "Update item"
     assert_content page, "Juicy delicious meat"
@@ -113,13 +118,22 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
+
+    restaurant1 = Restaurant.new(slug: "billys-bbq", name: "Billy's BBQ")
+    restaurant1.users << user1
+    restaurant1.items << item
+    restaurant1.status = "Approved"
+    restaurant1.categories << category1
+    restaurant1.categories << category2
+    restaurant1.save!
+
     visit root_path
     click_on "Login"
     fill_in "Username", with: 'admin'
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit edit_item_path(item)
+    visit edit_restaurant_item_path(restaurant1.slug, item)
     assert has_checked_field?("item_category_1")
   end
 
@@ -132,13 +146,22 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     user1 = User.new({username: 'admin', password: 'password', email: "admin@example.com"})
     user1.admin = true
     user1.save
+
+    restaurant1 = Restaurant.new(slug: "billys-bbq", name: "Billy's BBQ")
+    restaurant1.users << user1
+    restaurant1.items << item
+    restaurant1.status = "Approved"
+    restaurant1.categories << category1
+    restaurant1.categories << category2
+    restaurant1.save!
+
     visit root_path
     click_on "Login"
     fill_in "Username", with: 'admin'
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit edit_item_path(item)
+    visit edit_restaurant_item_path(restaurant1.slug, item)
     assert has_unchecked_field?("item_category_2")
   end
 end
