@@ -4,8 +4,12 @@ class ItemsController < ApplicationController
   before_action :require_owner, only: [:new, :edit]
 
   def index
-    redirect_to new_order_path unless cookies[:order_id]
-    redirect_to root_path if current_restaurant.nil? || current_restaurant.not_approved?
+    unless cookies[:order_id]
+      order = Order.create
+      cookies[:order_id] = order.id
+    end
+
+    redirect_to root_path unless current_restaurant.nil? || current_restaurant.approved?
 
     @categories = Category.all
 
@@ -64,7 +68,7 @@ class ItemsController < ApplicationController
       if @item.restaurant
         redirect_to restaurant_path(@item.restaurant.slug)
       else
-      redirect_to root_path
+        redirect_to root_path
       end
   end
 
