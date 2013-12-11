@@ -5,12 +5,12 @@ class ItemsController < ApplicationController
 
   def index
     redirect_to new_order_path unless cookies[:order_id]
-    redirect_to login_path if current_restaurant.not_approved?
+    redirect_to root_path if current_restaurant.nil? || current_restaurant.not_approved?
 
     @categories = Category.all
 
     if params[:restaurant_slug]
-      @items = current_restaurant.items
+      @items = current_restaurant.items.active
     else
       if params["Categories"]
 	@category = Category.find(params["Categories"])
@@ -47,6 +47,14 @@ class ItemsController < ApplicationController
     else
       @categories = Category.all
     end
+  end
+
+  def retire
+    @item = Item.find(params[:id])
+    @item.active = false
+    @item.save
+
+    redirect_to restaurant_dashboard_path(params[:restaurant_slug])
   end
 
   def create
