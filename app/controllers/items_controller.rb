@@ -1,16 +1,16 @@
 class ItemsController < ApplicationController
 
   before_action :require_login, except: [:index, :show, :add_to_order]
-  before_action :require_admin, except: [:index, :show, :add_to_order]
   before_action :require_owner, only: [:new, :edit]
 
   def index
     redirect_to new_order_path unless cookies[:order_id]
+    redirect_to login_path if current_restaurant.not_approved?
 
     @categories = Category.all
 
     if params[:restaurant_slug]
-      @items = Restaurant.find_by(slug: params[:restaurant_slug]).items
+      @items = current_restaurant.items
     else
       if params["Categories"]
 	@category = Category.find(params["Categories"])

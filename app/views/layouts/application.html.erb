@@ -2,8 +2,8 @@
 <html>
  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Dinner Dash" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Dinner Dash" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Hunger Gains" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Hunger Gains" %>">
      <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700,400italic' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "application", :media => "all" %>
    <%= javascript_include_tag "application" %>
@@ -12,7 +12,7 @@
   <body>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
-          <a href="/" class="logo"><img src="/images/platable.png"></a>
+          <a href="/" class="logo"><img src="/images/hunger_gains.png"></a>
           <div class="controls">
             <% if cookies[:order_id] %>
               <%= link_to "My Order", order_path(cookies[:order_id]), {:class => "btn btn-success"} %>
@@ -39,8 +39,9 @@
           </div>
           <footer>
             <div class="container">
-              <p>Platable. An open-source food ordering service built by gSchool class[1]</p>
-              <p>Will Mitchell, Persa Zula, &amp; Lauren Spath Luhring</p>
+              <p>Hunger Gains.</p>
+              <p> May the Odds be Ever in Your Flavor.</p>
+              <p>Darryl Pequeen, Rolen Le, &amp; Lauren Spath Luhring</p>
             </div>
           </footer>
         </div>

@@ -1,6 +1,11 @@
 class RestaurantsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:index]
   before_action :require_owner, only: [:show, :update]
+
+  def index
+    @restaurants = Restaurant.active
+  end
+
   def show
     @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
     # set_order(cookies[:order_id])
@@ -31,12 +36,12 @@ class RestaurantsController < ApplicationController
       @restaurant.users.each do |user|
         UserMailer.declined_restaurant_email(user, @restaurant).deliver
       end
-	redirect_to root_path
+	     redirect_to root_path
     elsif @restaurant.approved?
       @restaurant.users.each do |user|
-      UserMailer.new_restaurant_email(user, @restaurant).deliver
+        UserMailer.new_restaurant_email(user, @restaurant).deliver
       end
-      redirect_to restaurant_path(@restaurant.slug)
+       redirect_to restaurant_path(@restaurant.slug)
     else
        redirect_to restaurant_path(@restaurant.slug)
     end
