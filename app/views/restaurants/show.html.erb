@@ -4,7 +4,7 @@
 </br>
 <% @restaurant.items.each do |item| %>
   <%= item.title %>
-  <%= link_to "Edit", edit_item_path(item.id) %>
-  <%= link_to "Destroy", item_path(item.id), method: :delete %>
+  <%= link_to "Edit", edit_restaurant_item_path(item.restaurant.slug, item.id) %>
+  <%= link_to "Retire", retire_item_path(item.restaurant.slug, item.id), method: :put, data:{confirm: "Are you sure?"} %>
   </br>
 <%end %>
