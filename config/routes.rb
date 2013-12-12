@@ -1,12 +1,19 @@
 DinnerDash::Application.routes.draw do
 
-  resources :items
+  # resources :items, :except => [:new]
   resources :orders
   resources :order_items
   resources :users
   resources :categories
-  resources :user_sessions, only: [:new, :create, :destroy]
+  resources :user_sessions, :only => [:new, :create, :destroy]
   resources :charges
+  resources :restaurants, :except => [:show]
+
+  scope ":restaurant_slug" do
+    resources :items, :only => [:new, :create, :edit, :update]
+    # resource :dashboard, :only => [:show], :to => :restaurants
+    get "/dashboard", to: "restaurants#show", as: "restaurant_dashboard"
+  end
 
   root to: 'restaurants#index'
 
@@ -17,17 +24,14 @@ DinnerDash::Application.routes.draw do
   get "checkout" => "orders#checkout", as: 'checkout'
   post "place_order" => "orders#place_order", as: 'place_order'
 
-  get "dashboard" => "dashboard#show", as: 'dashboard'
+  get "dashboard" => "dashboard#show", as: 'admin_dashboard'
 
-  get "/:restaurant_slug", to: "items#index", as: "restaurant"
+  get "/:restaurant_slug", to: "items#index", as: "restaurant_items"
   put "/:restaurant_slug", to: "restaurants#update"
-  get "/:restaurant_slug/dashboard", to: "restaurants#show", as: "restaurant_dashboard"
-  get "/:restaurant_slug/items/new", to: "items#new", as: "new_restaurant_item"
-  put "/:restaurant_slug/items/new", to: "items#create"
-  get "/:restaurant_slug/items/:id/edit", to: "items#edit", as: "edit_restaurant_item"
+
+  # get "/:restaurant_slug/items/:id/edit", to: "items#edit", as: "edit_restaurant_item"
   put "/:restaurant_slug/items/:id/retire", to: "items#retire", as: "retire_item"
-  resources :restaurants
 
   get "/:restaurant_slug/categories", to: "categories#index", as: "restaurant_item_categories"
-  resources :restaurants, :categories
+
 end

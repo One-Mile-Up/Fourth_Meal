@@ -58,7 +58,7 @@ class ItemsController < ApplicationController
       @item.save
       @item.update_categories(params[:item][:category])
       if @item.restaurant
-        redirect_to restaurant_path(@item.restaurant.slug)
+        redirect_to restaurant_dashboard_path(@item.restaurant.slug)
       else
         redirect_to root_path
       end
@@ -74,7 +74,7 @@ class ItemsController < ApplicationController
     @item = Item.update(params[:id], item_params)
     @item.update_categories(params[:item][:category])
       if @item.restaurant
-        redirect_to restaurant_path(@item.restaurant.slug)
+        redirect_to restaurant_dashboard_path(@item.restaurant.slug)
       else
       redirect_to root_path
       end
