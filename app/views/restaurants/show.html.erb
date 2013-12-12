@@ -1,10 +1,10 @@
 <%= @restaurant.name %>
 </br>
-<%= link_to "Add Item" , new_restaurant_item_path(@restaurant.slug) %>
+<%= link_to "Add Item" , new_item_path(@restaurant.slug) %>
 </br>
 <% @restaurant.items.each do |item| %>
   <%= item.title %>
-  <%= link_to "Edit", edit_restaurant_item_path(item.restaurant.slug, item.id) %>
+  <%= link_to "Edit", edit_item_path(@restaurant.slug, item.id) %>
   <%= link_to "Retire", retire_item_path(item.restaurant.slug, item.id), method: :put, data:{confirm: "Are you sure?"} %>
   </br>
 <%end %>
