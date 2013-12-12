@@ -24,7 +24,7 @@ class RestaurantsController < ApplicationController
     end
     flash.notice = @restaurant.name + " is pending approval."
 
-    redirect_to restaurant_path(@restaurant.slug)
+    redirect_to restaurant_item_path(@restaurant.slug)
   end
 
   def update
@@ -35,15 +35,15 @@ class RestaurantsController < ApplicationController
     if @restaurant.declined?
       @restaurant.users.each do |user|
         UserMailer.declined_restaurant_email(user, @restaurant).deliver
-      end
-	     redirect_to root_path
-    elsif @restaurant.approved?
+    end
+      redirect_to root_path
+   elsif @restaurant.approved?
       @restaurant.users.each do |user|
         UserMailer.new_restaurant_email(user, @restaurant).deliver
       end
-       redirect_to restaurant_path(@restaurant.slug)
+       redirect_to restaurant_items_path(@restaurant.slug)
     else
-       redirect_to restaurant_path(@restaurant.slug)
+       redirect_to restaurant_items_path(@restaurant.slug)
     end
   end
 

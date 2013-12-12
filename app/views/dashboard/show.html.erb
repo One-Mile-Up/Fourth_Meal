@@ -1,15 +1,16 @@
 <div id ="dashboard">
   <h2>Admin Dashboard</h2>
 
-  <%= link_to "Jump To Menu Items", dashboard_path(:anchor =>"menu-items") %> <br>
-  <%= link_to "Jump To Categories List", dashboard_path(:anchor =>"categories-list") %> <br>
-  <%= link_to "Jump To Orders List", dashboard_path(:anchor =>"orders-list") %> <br>
-  <%= link_to "Jump To Users List", dashboard_path(:anchor =>"users-list") %>
+  <%= link_to "Jump To Menu Items", admin_dashboard_path(:anchor =>"menu-items") %> <br>
+  <%= link_to "Jump To Categories List", admin_dashboard_path(:anchor =>"categories-list") %> <br>
+  <%= link_to "Jump To Orders List", admin_dashboard_path(:anchor =>"orders-list") %> <br>
+  <%= link_to "Jump To Users List", admin_dashboard_path(:anchor =>"users-list") %>
 
 
   <% @dashboard.restaurants.each do |restaurant| %>
-    <%= link_to restaurant.name, restaurant_path(restaurant.slug) %>
-    <%= form_for restaurant, url: restaurant_path(restaurant.slug), html: {method: "put"}  do |f| %>
+    <%= restaurant.slug %>
+    <%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %>
+    <%= form_for restaurant, url: restaurant_dashboard_path(restaurant.slug),method: "put", html: {multipart: true}  do |f| %>
       <%= f.label :status %>
       <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %>
       <%= f.submit "Update Status" %>
@@ -25,9 +26,11 @@
   <table>
   <% @dashboard.items.each do |item| %>
     <tr>
-      <td><%= link_to item.title, item_path(item.id) %></td>
-      <td><%= link_to "Edit", edit_item_path(item.id), {:class => "btn btn-warning edit-item" } %></td>
+      <% if item.restaurant %>
+      <td><%= link_to item.title, item_path(item.restaurant.slug, item.id) %></td>
+      <td><%= link_to "Edit", edit_item_path(item.restaurant.slug, item.id), {:class => "btn btn-warning edit-item" } %></td>
       <td></td>
+    <% end %>
     </tr>
   <% end %>
   </table:

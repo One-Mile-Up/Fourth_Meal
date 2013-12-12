@@ -7,7 +7,7 @@
 
 <p>
   <% if current_user.admin? %>
-  <%= link_to "Admin Dashboard",  dashboard_path, {:class => "btn btn-info" } %>
+  <%= link_to "Admin Dashboard",  admin_dashboard_path, {:class => "btn btn-info" } %>
   <% end %>
 </p>
 
@@ -33,7 +33,7 @@
     <% order.items.each do |item| %>
     <tr>
       <% oi = OrderItem.where(order_id: order.id, item_id: item.id).first %>
-      <td><%= link_to item.title, item_path(item.id) %></td>
+      <td><%= link_to item.title, item_path(item.restaurant.slug,item.id) %></td>
       <td><%= item.description %></td>
       <td><%= print_price(item.price) %></td>
       <td> <%= oi.quantity %></td>

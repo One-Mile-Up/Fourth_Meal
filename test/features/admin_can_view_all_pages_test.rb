@@ -51,7 +51,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit new_restaurant_item_path(restaurant1.slug)
+    visit new_item_path(restaurant1.slug)
     fill_in "Title", :with => "deviled eggs"
     fill_in "Description", :with => "12 luscious eggs"
     fill_in "Price", :with => "3"

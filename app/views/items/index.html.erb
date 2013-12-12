@@ -4,7 +4,7 @@
 	<%= form_tag(restaurant_path(@restaurant.slug), method: "get", class:"select-category") do %>
   <%= category_selection(@category, @categories)%>
     <%= submit_tag "Browse by Category", {:class => "btn btn-info"} %>
-	<% end %>	
+	<% end %>
     <%= link_to "View All", items_path, {:class => "btn btn-info view-all"} %>
 </div>
 
@@ -17,7 +17,7 @@
       <%= image_tag item.image.url(:small), {:class => "item-show-image"} %><br/>
     <% end %>
     <div class="item-details">
-      <a href="<%= item_path item.id %>" class="title"><%= item.title %></a>
+      <a href="<%= item_path(item.restaurant.slug, item.id) %>" class="title"><%= item.title %></a>
        <p> <%= item.description %></p>
 	     <p><%=print_price(item.price) %></p>
        <ul class="categories">
