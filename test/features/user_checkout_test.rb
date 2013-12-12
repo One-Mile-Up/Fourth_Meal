@@ -2,11 +2,14 @@ require "./test/test_helper"
 
 class UserCheckoutTest < Capybara::Rails::TestCase
   test "user must login before checking out" do
-    r1 = Restaurant.create(name: "Billy's BBQ")
-    Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1', restaurant_id: r1.id)
-    visit root_path
-
-    within("#item_1") do
+    r1 = Restaurant.create(name: "Billy's BBQ", slug: "billys-bbq", description: "yummy", status:"Approved")
+    item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1', restaurant_id: r1.id)
+    item.active = true
+    item.save
+    r1.items << item
+    r1.save
+    visit restaurant_path(r1.slug)
+    within("li#item_1") do
       click_on 'Add to Order'
     end
 
@@ -22,9 +25,16 @@ class UserCheckoutTest < Capybara::Rails::TestCase
   test "user can visit checkout after logging in" do
     User.create({username: 'bob_bob', email: "bob@example.com",
 password: 'password'})
-    r1 = Restaurant.create(name: "Billy's BBQ")
-    Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1', restaurant_id: r1.id)
-    visit root_path
+
+    r1 = Restaurant.create(name: "Billy's BBQ", slug: "billys-bbq", description:"stuff",status: "Approved")
+
+    item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: '1', restaurant_id: r1.id)
+    item.active = true
+    item.save
+    r1.items << item
+
+    r1.save
+    visit restaurant_path(r1.slug)
     within("#item_1") do
       click_on 'Add to Order'
     end
@@ -45,11 +55,18 @@ password: 'password'})
   test "user can see all old orders" do
     User.create({username: 'bob_bob', email: "bob@example.com",
                 password: 'password'})
-    r1 = Restaurant.create(name: "Billy's BBQ")
-    Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: 1, restaurant: r1)
-    Item.create(title: 'Spam', description: 'Almost meat', price: 2, restaurant_id: r1.id)
+    r1 = Restaurant.create(name: "Billy's BBQ", slug: "billys-bbq", description: "stuff", status: "Approved")
+   item = Item.create(title: 'Deviled Eggs', description: '12 luscious eggs', price: 1, restaurant: r1)
+   item2 =  Item.create(title: 'Spam', description: 'Almost meat', price: 2, restaurant_id: r1.id)
+    item.active = true
+    item.save
+    r1.items << item
+    item2.active = true
+    item2.save
+    r1.items << item2
+    r1.save
+    visit restaurant_path(r1.slug)
 
-    visit root_path
     within("#item_1") do
       click_on 'Add to Order'
     end
@@ -59,13 +76,13 @@ password: 'password'})
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit root_path
 
+    visit restaurant_path(r1.slug)
     click_on "My Order"
     click_on "Checkout"
     click_on "Place Order"
 
-    visit root_path
+    visit restaurant_path(r1.slug)
     within("#item_2") do
       click_on 'Add to Order'
     end

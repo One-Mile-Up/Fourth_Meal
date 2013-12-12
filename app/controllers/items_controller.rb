@@ -5,11 +5,11 @@ class ItemsController < ApplicationController
 
   def index
     redirect_to root_path unless current_restaurant.nil? || current_restaurant.approved?
-    set_order_cookie
-    @categories = Category.all
+    @categories = current_restaurant.categories
     current_items = current_restaurant.items.active
     @restaurant = current_restaurant
 
+    set_order_cookie
     if params["Categories"]
   	  @category = Category.find(params["Categories"])
   	  @items = current_items.find_all {|item| item.categories.include? @category}

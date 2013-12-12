@@ -16,6 +16,6 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     flash.notice = "Logged out"
-    redirect_to items_path
+    redirect_to root_path
   end
 end

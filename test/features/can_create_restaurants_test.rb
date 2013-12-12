@@ -1,12 +1,34 @@
 require "./test/test_helper"
 
 class CanCreateRestaurantsTest < Capybara::Rails::TestCase
+  attr_reader :user
+  def login_user
+    @user = User.new
+    @user.username = 'user'
+    @user.password = 'password'
+    @user.email = 'user@example.com'
+    @user.save
+
+    visit root_path
+
+    click_on "Login"
+
+    fill_in "Username", with: 'user'
+    fill_in "Password", with: 'password'
+    click_button "Login"
+  end
 
   test "can view individual restaurant pages " do
-    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", 
+    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq",
                                     description: "yummy", status: "Approved")
     restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar",
                                     description: "drinks", status: "Approved")
+    login_user
+
+    restaurant1.users << user
+    restaurant2.users << user
+    restaurant1.save
+    restaurant2.save
 
     visit "/billys-bbq"
     assert_content page, "Billy's BBQ"
@@ -20,6 +42,11 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
     restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar", description: "drinks", status: "Approved")
     item1 = Item.create(title: "Pork Sandwich", description: "Delicious", price: 5, restaurant_id: restaurant1.id)
     item2 = Item.create(title: "PBR", description: "Hiptastic", price: 3, restaurant_id: restaurant2.id)
+
+    restaurant1.items << item1
+    restaurant2.items << item2
+    restaurant1.save
+    restaurant2.save
 
     visit "/billys-bbq"
     assert_content page, "Pork Sandwich"
