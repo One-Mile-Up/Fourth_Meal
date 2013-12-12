@@ -3,8 +3,11 @@ require "./test/test_helper"
 class CanCreateRestaurantsTest < Capybara::Rails::TestCase
 
   test "can view individual restaurant pages " do
-    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", description: "yummy")
-    restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar", description: "drinks")
+    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", 
+                                    description: "yummy", status: "Approved")
+    restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar",
+                                    description: "drinks", status: "Approved")
+
     visit "/billys-bbq"
     assert_content page, "Billy's BBQ"
 
@@ -13,8 +16,8 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
   end
 
   test "restaurant has only its items" do
-    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", description: "yummy")
-    restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar", description: "drinks")
+    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", description: "yummy", status: "Approved")
+    restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar", description: "drinks", status: "Approved")
     item1 = Item.create(title: "Pork Sandwich", description: "Delicious", price: 5, restaurant_id: restaurant1.id)
     item2 = Item.create(title: "PBR", description: "Hiptastic", price: 3, restaurant_id: restaurant2.id)
 
@@ -47,7 +50,7 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
     restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", description: "yummy")
 
     visit dashboard_path
-    within "#edit_restaurant_#{restaurant1.id}" do
+    within "#edit_restaurant_1" do
       select "Approved", from: "Status"
       click_on "Update Status"
     end

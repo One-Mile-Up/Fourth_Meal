@@ -21,8 +21,8 @@ class CanCreateItemCategoriesTest < Capybara::Rails::TestCase
 
   test "restaurant has only its categories" do
     login_user
-    restaurant1 = Restaurant.create(name: "Billy's BBQ")
-    restaurant2 = Restaurant.create(name: "Dive Bar")
+    restaurant1 = Restaurant.create(name: "Billy's BBQ", description: "Burger", slug: "billys-bbq", status: "Approved")
+    restaurant2 = Restaurant.create(name: "Dive Bar", description: "Salad", slug: "dive-bar", status: "Approved")
     category1 = Category.create(name: "Pork", restaurant_id: restaurant1.id)
     category2 = Category.create(name: "Beer", restaurant_id: restaurant2.id)
 
