@@ -45,7 +45,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     restaurant1.status = "Approved"
     restaurant1.save!
 
-    visit restaurant_path(restaurant1.slug)
+    visit root_path
     click_on "Login"
     fill_in "Username", with: 'admin'
     fill_in "Password", with: 'password'
@@ -161,7 +161,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit edit_restaurant_item_path(restaurant1.slug, item)
+    visit edit_item_path(restaurant1.slug, item.id)
     assert has_unchecked_field?("item_category_2")
   end
 end
