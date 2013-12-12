@@ -1,5 +1,7 @@
+<h1> <%=@restaurant.name%> </h1>
+
 <div class="select-menu">
-	<%= form_tag("/", method: "get", class:"select-category") do %>
+	<%= form_tag(restaurant_path(@restaurant.slug), method: "get", class:"select-category") do %>
   <%= category_selection(@category, @categories)%>
     <%= submit_tag "Browse by Category", {:class => "btn btn-info"} %>
 	<% end %>	

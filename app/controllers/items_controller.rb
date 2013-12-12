@@ -4,26 +4,18 @@ class ItemsController < ApplicationController
   before_action :require_owner, only: [:new, :edit]
 
   def index
-    unless cookies[:order_id]
-      order = Order.create
-      cookies[:order_id] = order.id
-    end
-
     redirect_to root_path unless current_restaurant.nil? || current_restaurant.approved?
-
+    set_order_cookie
     @categories = Category.all
+    current_items = current_restaurant.items.active
+    @restaurant = current_restaurant
 
-    if params[:restaurant_slug]
-      @items = current_restaurant.items.active
+    if params["Categories"]
+  	  @category = Category.find(params["Categories"])
+  	  @items = current_items.find_all {|item| item.categories.include? @category}
     else
-      if params["Categories"]
-	@category = Category.find(params["Categories"])
-	@items = Item.active.find_all {|item| item.categories.include? @category}
-      else
-	@items = Item.active
-      end
+  	  @items = current_items
     end
-
     set_order(cookies[:order_id])
   end
 
@@ -113,6 +105,13 @@ class ItemsController < ApplicationController
       @order = Order.find(order)
     else
       @order = nil
+    end
+  end
+
+  def set_order_cookie
+    unless cookies[:order_id]
+      order = Order.create
+      cookies[:order_id] = order.id
     end
   end
 end
