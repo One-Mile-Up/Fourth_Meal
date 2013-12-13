@@ -24,13 +24,15 @@ class RestaurantsController < ApplicationController
     end
     flash.notice = @restaurant.name + " is pending approval."
 
-    redirect_to restaurant_item_path(@restaurant.slug)
+    redirect_to root_path
   end
 
   def update
-    @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
 
-    @restaurant.update(status_params)
+    restaurant = Restaurant.find( params[:restaurant][:id])
+    puts "params #{params[:restaurant][:id]}"
+    puts "params #{restaurant}"
+    @restaurant =  Restaurant.update(restaurant, status_params)
 
     if @restaurant.declined?
       @restaurant.users.each do |user|

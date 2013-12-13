@@ -1,11 +1,11 @@
 <h1> <%=@restaurant.name%> </h1>
 
 <div class="select-menu">
-	<%= form_tag(restaurant_path(@restaurant.slug), method: "get", class:"select-category") do %>
+	<%= form_tag(restaurant_items_path(@restaurant.slug), method: "get", class:"select-category") do %>
   <%= category_selection(@category, @categories)%>
     <%= submit_tag "Browse by Category", {:class => "btn btn-info"} %>
 	<% end %>
-    <%= link_to "View All", items_path, {:class => "btn btn-info view-all"} %>
+    <%= link_to "View All", restaurant_items_path(@restaurant.slug), {:class => "btn btn-info view-all"} %>
 </div>
 
 <div id="items">

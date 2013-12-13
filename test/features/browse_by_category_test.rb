@@ -13,9 +13,10 @@ class BrowseByCategoryTest < Capybara::Rails::TestCase
     restaurant = Restaurant.create!(:name => "Billy's BBQ", :slug => "billys-bbq", :status => "Approved")
     restaurant.categories << cat1
     restaurant.save
-    visit restaurant_path(restaurant.slug)
+    visit restaurant_items_path(restaurant.slug)
     select('Plates', :from => 'Categories')
     click_button "Browse by Category"
+
     within('#items > ul') do
       refute_content page, "Desserts"
     end

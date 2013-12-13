@@ -2,7 +2,7 @@ require "./test/test_helper"
 
 class CanAccessItemsTest < Capybara::Rails::TestCase
   attr_reader :restaurant
-  
+
   def setup
     @restaurant = Restaurant.create!(name: "Billy's BBQ", description: "Burger", slug: "billys-bbq", status: "Approved")
   end
@@ -13,7 +13,7 @@ class CanAccessItemsTest < Capybara::Rails::TestCase
     restaurant.items << item
     restaurant.save
 
-    visit restaurant_path(restaurant.slug)
+    visit restaurant_items_path(restaurant.slug)
 
     assert_content page, "Deviled Eggs"
     refute_content page, "Bread"
@@ -27,7 +27,7 @@ class CanAccessItemsTest < Capybara::Rails::TestCase
     restaurant.categories << category
     restaurant.save
 
-    visit restaurant_path(restaurant.slug)
+    visit restaurant_items_path(restaurant.slug)
 
     assert_content page, "Burger"
     assert_content page, "Plates"
@@ -42,7 +42,7 @@ class CanAccessItemsTest < Capybara::Rails::TestCase
 
     restaurant.save
 
-    visit restaurant_path(restaurant.slug)
+    visit restaurant_items_path(restaurant.slug)
 
     within("#items") do
       assert_content page, "Loafy badness"
@@ -56,8 +56,9 @@ class CanAccessItemsTest < Capybara::Rails::TestCase
     restaurant.items << item
     restaurant.save
 
-    visit restaurant_path(restaurant.slug)
+    visit restaurant_items_path(restaurant.slug)
 
+    save_and_open_page
     within("#item_1") do
       click_on "#{item.title}"
     end

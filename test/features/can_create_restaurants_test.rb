@@ -76,7 +76,7 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
 
     restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", description: "yummy")
 
-    visit dashboard_path
+    visit admin_dashboard_path
     within "#edit_restaurant_1" do
       select "Approved", from: "Status"
       click_on "Update Status"

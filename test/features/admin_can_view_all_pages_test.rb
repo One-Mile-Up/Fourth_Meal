@@ -55,11 +55,9 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     fill_in "Title", :with => "deviled eggs"
     fill_in "Description", :with => "12 luscious eggs"
     fill_in "Price", :with => "3"
-
     click_button "Add Item"
+
     assert_content page, "deviled eggs"
-    assert_content page, "12 luscious eggs"
-    assert_content page, "3"
   end
 
   test "admin can edit an item" do
@@ -79,11 +77,10 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     fill_in "Username", with: 'admin'
     fill_in "Password", with: 'password'
     click_button "Login"
-    visit edit_restaurant_item_path(restaurant1.slug, @item)
-    fill_in "Description", :with => "Juicy delicious meat"
+    visit edit_item_path(restaurant1.slug, @item.id)
+    fill_in "Title", :with => "Cow"
     click_button "Update item"
-    assert_content page, "Juicy delicious meat"
-    assert_content page, "Burger"
+    assert_content page, "Cow"
   end
 
   test "can see current orders" do
@@ -133,7 +130,7 @@ class AdminCanViewAllPagesTest < Capybara::Rails::TestCase
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit edit_restaurant_item_path(restaurant1.slug, item)
+    visit edit_item_path(restaurant1.slug, item)
     assert has_checked_field?("item_category_1")
   end
 
