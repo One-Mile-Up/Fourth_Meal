@@ -6,9 +6,9 @@ class DashboardPageWorksTest < Capybara::Rails::TestCase
     user = User.new(username: 'non admin', password: 'password', email: 'non_admin@example.com')
     user.save
 
-    visit dashboard_path
+    visit admin_dashboard_path
 
-    refute_equal current_path, dashboard_path
+    refute_equal current_path, admin_dashboard_path
   end
 
   test "admin user can access the dashboard" do
@@ -23,7 +23,7 @@ class DashboardPageWorksTest < Capybara::Rails::TestCase
     fill_in "Password", with: "password"
     click_button "Login"
 
-    visit dashboard_path
-    assert_equal dashboard_path, current_path
+    visit admin_dashboard_path
+    assert_equal admin_dashboard_path, current_path
   end
 end

@@ -23,7 +23,7 @@
       <tbody>
     <% item = order_item.item %>
     <tr id="item_<%= item.id %>">
-      <td class="item-title"><%= link_to item.title, item_path(item.id)  %></td>
+      <td class="item-title"><%= link_to item.title, item_path(restaurant.slug,  item.id)  %></td>
       <td><%= item.description %></td>
       <td><%= print_price(item.price) %></td>
 

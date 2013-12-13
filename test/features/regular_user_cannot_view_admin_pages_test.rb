@@ -59,7 +59,7 @@ class RegularUserCannotViewAdminPagesTest < Capybara::Rails::TestCase
     fill_in "Password", with: 'password'
     click_button "Login"
 
-    visit new_restaurant_item_path(restaurant.slug)
+    visit new_item_path(restaurant.slug)
     refute_content page, "Create an Item"
   end
 end

@@ -20,7 +20,7 @@
   <div class="menu-items">
   <h3>Menu Items</h3>
   <a id="menu-items"></a>
-  <%= link_to "Create New Menu Item", new_item_path, {:class => "btn btn-success create-new-item"} %>
+  <%= link_to "Create New Menu Item", new_item_path(item.restaurant_slug), {:class => "btn btn-success create-new-item"} %>
   <br>
   <br>
   <table>

@@ -8,13 +8,12 @@ class UserCheckoutTest < Capybara::Rails::TestCase
     item.save
     r1.items << item
     r1.save
-    visit restaurant_path(r1.slug)
+    visit restaurant_items_path(r1.slug)
     within("li#item_1") do
       click_on 'Add to Order'
     end
 
     click_on "My Order"
-
     click_on "Checkout"
 
     within(".controls") do
@@ -34,7 +33,7 @@ password: 'password'})
     r1.items << item
 
     r1.save
-    visit restaurant_path(r1.slug)
+    visit restaurant_items_path(r1.slug)
     within("#item_1") do
       click_on 'Add to Order'
     end
@@ -65,7 +64,7 @@ password: 'password'})
     item2.save
     r1.items << item2
     r1.save
-    visit restaurant_path(r1.slug)
+    visit restaurant_items_path(r1.slug)
 
     within("#item_1") do
       click_on 'Add to Order'
@@ -77,12 +76,12 @@ password: 'password'})
     click_button "Login"
 
 
-    visit restaurant_path(r1.slug)
+    visit restaurant_items_path(r1.slug)
     click_on "My Order"
     click_on "Checkout"
     click_on "Place Order"
 
-    visit restaurant_path(r1.slug)
+    visit restaurant_items_path(r1.slug)
     within("#item_2") do
       click_on 'Add to Order'
     end
