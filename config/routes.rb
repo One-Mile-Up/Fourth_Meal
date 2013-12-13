@@ -10,7 +10,7 @@ DinnerDash::Application.routes.draw do
   resources :restaurants, :except => [:show]
 
   scope ":restaurant_slug" do
-    resources :items, :only => [:new, :create, :edit, :update]
+    resources :items, :only => [:show, :new, :create, :edit, :update]
     # resource :dashboard, :only => [:show], :to => :restaurants
     get "/dashboard", to: "restaurants#show", as: "restaurant_dashboard"
   end
@@ -27,7 +27,7 @@ DinnerDash::Application.routes.draw do
   get "dashboard" => "dashboard#show", as: 'admin_dashboard'
 
   get "/:restaurant_slug", to: "items#index", as: "restaurant_items"
-  put "/:restaurant_slug", to: "restaurants#update"
+ # put "/:restaurant_slug", to: "restaurants#update"
 
   # get "/:restaurant_slug/items/:id/edit", to: "items#edit", as: "edit_restaurant_item"
   put "/:restaurant_slug/items/:id/retire", to: "items#retire", as: "retire_item"

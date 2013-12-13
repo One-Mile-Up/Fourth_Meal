@@ -1,4 +1,4 @@
 <% @restaurants.each do |restaurant| %>
-  <%= link_to restaurant.name, restaurant_path(restaurant.slug) %>
+  <%= link_to restaurant.name, restaurant_items_path(restaurant.slug) %>
   </br>
 <%end %>
