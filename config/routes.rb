@@ -1,5 +1,6 @@
+require 'resque/server'
 DinnerDash::Application.routes.draw do
-
+  mount Resque::Server.new, at: "/resque"
   # resources :items, :except => [:new]
   resources :orders
   resources :order_items
