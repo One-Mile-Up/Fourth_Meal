@@ -29,9 +29,7 @@ class RestaurantsController < ApplicationController
 
   def update
 
-    restaurant = Restaurant.find( params[:restaurant][:id])
-    puts "params #{params[:restaurant][:id]}"
-    puts "params #{restaurant}"
+    restaurant = Restaurant.find( params[:id])
     @restaurant =  Restaurant.update(restaurant, status_params)
 
     if @restaurant.declined?

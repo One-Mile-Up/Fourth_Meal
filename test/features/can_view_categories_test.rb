@@ -10,7 +10,7 @@ class CanViewCategoriesTest < Capybara::Rails::TestCase
     r1.items << item
     r1.categories << category
 
-    visit restaurant_path(r1.slug)
+    visit restaurant_items_path(r1.slug)
     assert_content page, "Deviled Eggs"
     assert_content page, "brunch"
   end
@@ -33,7 +33,7 @@ class CanViewCategoriesTest < Capybara::Rails::TestCase
     click_on("Billy's BBQ")
 
     within("#item_1") do
-      click_on "brunch"
+    click_on "brunch"
     end
 
     refute_content page, "Ham Sandwich"

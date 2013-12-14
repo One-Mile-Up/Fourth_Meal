@@ -10,7 +10,7 @@
   <% @dashboard.restaurants.each do |restaurant| %>
     <%= restaurant.slug %>
     <%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %>
-    <%= form_for restaurant, method: "put", html: {multipart: true}  do |f| %>
+    <%= form_for restaurant, url: restaurant_path(restaurant.id), method: "put", html: {multipart: true}  do |f| %>
       <%= f.label :status %>
       <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %>
     <%= f.hidden_field :id, value: restaurant.id %>

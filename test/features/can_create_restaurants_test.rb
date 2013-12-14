@@ -19,7 +19,7 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
   end
 
   test "can view individual restaurant pages " do
-    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq",
+    restaurant1 = Restaurant.create(name: "Poppy's Place", slug:"poppys-place",
                                     description: "yummy", status: "Approved")
     restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar",
                                     description: "drinks", status: "Approved")
@@ -30,25 +30,25 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
     restaurant1.save
     restaurant2.save
 
-    visit "/billys-bbq"
-    assert_content page, "Billy's BBQ"
+    visit restaurant_items_path(restaurant1.slug)
+    assert_content page, "Poppy's Place"
 
     visit "/dive-bar"
     assert_content page, "Dive Bar"
   end
 
   test "restaurant has only its items" do
-    restaurant1 = Restaurant.create(name: "Billy's BBQ", slug:"billys-bbq", description: "yummy", status: "Approved")
+    restaurant1 = Restaurant.create(name: "Nathaniels Nectar", slug:"nathaniels-nectar", description: "yummy", status: "Approved")
     restaurant2 = Restaurant.create(name: "Dive Bar", slug: "dive-bar", description: "drinks", status: "Approved")
     item1 = Item.create(title: "Pork Sandwich", description: "Delicious", price: 5, restaurant_id: restaurant1.id)
     item2 = Item.create(title: "PBR", description: "Hiptastic", price: 3, restaurant_id: restaurant2.id)
 
     restaurant1.items << item1
     restaurant2.items << item2
-    restaurant1.save
-    restaurant2.save
+    restaurant1.save!
+    restaurant2.save!
 
-    visit "/billys-bbq"
+    visit "/nathaniels-nectar"
     assert_content page, "Pork Sandwich"
     refute_content page, "PBR"
 
@@ -79,11 +79,11 @@ class CanCreateRestaurantsTest < Capybara::Rails::TestCase
     visit admin_dashboard_path
     within "#edit_restaurant_1" do
       select "Approved", from: "Status"
-      click_on "Update Status"
+      click_button "Update Status"
     end
 
-    visit restaurant_path(restaurant1.slug)
-    assert_equal current_path, restaurant_path(restaurant1.slug)
+    visit restaurant_items_path(restaurant1.slug)
+    assert_equal current_path, restaurant_items_path(restaurant1.slug)
   end
 
 end

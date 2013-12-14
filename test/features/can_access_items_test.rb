@@ -58,7 +58,7 @@ class CanAccessItemsTest < Capybara::Rails::TestCase
 
     visit restaurant_items_path(restaurant.slug)
 
-    save_and_open_page
+    
     within("#item_1") do
       click_on "#{item.title}"
     end

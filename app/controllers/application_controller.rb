@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_restaurant
+    if params[:restaurant_slug]
     Restaurant.find_by(slug: params[:restaurant_slug])
+    elsif params[:id]
+      Restaurant.find(params[:id])
+    end
   end
 
   def require_owner
