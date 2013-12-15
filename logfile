@@ -23,3 +23,48 @@ FATAL:  database "db/development" does not exist
 ERROR:  database "db/development" is being accessed by other users
 DETAIL:  There are 2 other sessions using the database.
 STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+LOG:  database system was shut down at 2013-12-13 17:44:41 MST
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+FATAL:  database "db/development" does not exist
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There are 2 other sessions using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+FATAL:  terminating autovacuum process due to administrator command
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There are 2 other sessions using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" already exists
+STATEMENT:  CREATE DATABASE "db/development" ENCODING = 'utf8'
+ERROR:  canceling statement due to user request
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" already exists
+STATEMENT:  CREATE DATABASE "db/development" ENCODING = 'utf8'
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" already exists
+STATEMENT:  CREATE DATABASE "db/development" ENCODING = 'utf8'
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+FATAL:  database "db/development" does not exist
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" already exists
+STATEMENT:  CREATE DATABASE "db/development" ENCODING = 'utf8'
+ERROR:  database "db/development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+STATEMENT:  DROP DATABASE IF EXISTS "db/development"
+ERROR:  database "db/development" already exists
+STATEMENT:  CREATE DATABASE "db/development" ENCODING = 'utf8'
