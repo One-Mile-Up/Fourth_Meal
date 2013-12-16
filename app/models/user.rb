@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.pending_resetaurant_email(restaurant)
+  def self.pending_restaurant_email(restaurant)
     User.admins.each do |admin|
       UserMailer.pending_restaurant_email(admin, restaurant).deliver
     end
