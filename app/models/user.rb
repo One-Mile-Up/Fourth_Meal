@@ -20,4 +20,22 @@ class User < ActiveRecord::Base
   def self.admins
     self.where(admin: true)
   end
+
+  def self.declined_restaurant_email(restaurant)
+    restaurant.users.each do |user|
+      UserMailer.declined_restaurant_email(user, restaurant).deliver
+    end
+  end
+
+  def self.approved_restaurant_email(restaurant)
+    restaurant.users.each do |user|
+      UserMailer.new_restaurant_email(user, restaurant).deliver
+    end
+  end
+
+  def self.pending_resetaurant_email(restaurant)
+    User.admins.each do |admin|
+      UserMailer.pending_restaurant_email(admin, restaurant).deliver
+    end
+  end
 end

@@ -19,31 +19,27 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.users << current_user
     @restaurant.save
-    User.admins.each do |admin|
-      UserMailer.pending_restaurant_email(admin, @restaurant).deliver
-    end
-    flash.notice = @restaurant.name + " is pending approval."
 
+    User.pending_restaurant_email(@restaurant)
+
+    flash.notice = @restaurant.name + " is pending approval."
     redirect_to root_path
   end
 
   def update
 
-    restaurant = Restaurant.find( params[:id])
-    @restaurant =  Restaurant.update(restaurant, status_params)
+    @restaurant = Restaurant.find( params[:id])
+    @restaurant.update(status_params)
 
     if @restaurant.declined?
-      @restaurant.users.each do |user|
-        UserMailer.declined_restaurant_email(user, @restaurant).deliver
-    end
+      User.declined_restaurant_email(@restaurant)
+
       redirect_to root_path
    elsif @restaurant.approved?
-      @restaurant.users.each do |user|
-        UserMailer.new_restaurant_email(user, @restaurant).deliver
-      end
-       redirect_to restaurant_items_path(@restaurant.slug)
+      User.approved_restaurant_email(@restaurant)
+      redirect_to restaurant_items_path(@restaurant.slug)
     else
-       redirect_to restaurant_items_path(@restaurant.slug)
+      redirect_to restaurant_items_path(@restaurant.slug)
     end
   end
 
