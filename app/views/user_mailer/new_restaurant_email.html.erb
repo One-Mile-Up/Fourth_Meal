@@ -6,7 +6,7 @@
   <body>
     <h1><%= @user.username %></h1>
 
-    <p>You have been approved. Please add items to <%= link_to @restaurant.name, restaurant_dashboard_path(@restaurant.slug) %></p>
+    <p>You have been approved. Please add items to <%= link_to @restaurant.name, restaurant_dashboard_url(@restaurant.slug) %></p>
 
   </body>
 </html>
