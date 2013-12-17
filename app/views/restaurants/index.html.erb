@@ -1,6 +1,9 @@
-<% if current_user %>
-<%= link_to "Create a Restaurant", new_restaurant_path, {:class => "btn btn-info" } %>
-<% end %>
+<div class="jumbotron">
+  <h1>Welcome to Hunger Gains!</h1>
+  <p>...may the odds be ever in your flavor.</p>
+  <p><a class="btn btn-primary btn-lg" role="button">Sign up now</a></p>
+</div>
+
 <div id="items">
   <ul>
   <% @restaurants.each do |restaurant| %>

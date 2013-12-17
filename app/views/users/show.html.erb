@@ -11,7 +11,23 @@
   <% end %>
 </p>
 
+<h2>User Dashboard</h2>
 
+<h3>Manage my Restaurants</h3>
+<div id="user_restaurants">
+  <% if current_user %>
+    <table>
+    <% current_user.restaurants.each do |restaurant| %>
+      <tr><td><%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %></td></tr>
+    <% end %>
+    </table>
+  <% end %>
+<br>
+  <% if current_user %>
+<%= link_to "Create a Restaurant", new_restaurant_path, {:class => "btn btn-sm btn-info" } %>
+<% end %>
+
+</div>
 
 <h2>Recent Orders</h2>
 <hr>

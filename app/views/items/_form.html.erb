@@ -15,12 +15,15 @@
     <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
    <%end%>
   <br>
+  
+  <% unless @categories %>
   <h4>Select a Category</h4>
-  <% @categories.each do |category| %>
-    <p class="category-checkbox">
-    <%= check_box_tag "item[category][#{category.id}]", category.id, @item.categories.include?(category) %>
-    <%= f.label category.name %>
-    </p>
+    <% @categories.each do |category| %>
+      <p class="category-checkbox">
+      <%= check_box_tag "item[category][#{category.id}]", category.id, @item.categories.include?(category) %>
+      <%= f.label category.name %>
+      </p>
+    <% end %>
   <% end %>
   <br>
   <h4>Is this menu item active?</h4>
