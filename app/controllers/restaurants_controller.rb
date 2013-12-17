@@ -34,12 +34,12 @@ class RestaurantsController < ApplicationController
     if @restaurant.declined?
       User.declined_restaurant_email(@restaurant)
 
-      redirect_to root_path
+      redirect_to admin_dashboard_path
    elsif @restaurant.approved?
       User.approved_restaurant_email(@restaurant)
-      redirect_to restaurant_items_path(@restaurant.slug)
+      redirect_to admin_dashboard_path
     else
-      redirect_to restaurant_items_path(@restaurant.slug)
+      redirect_to admin_dashboard_path
     end
   end
 
