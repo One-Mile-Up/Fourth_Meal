@@ -1,6 +1,3 @@
-<% if current_user %>
-<%= link_to "Create a Restaurant", new_restaurant_path, {:class => "btn btn-info" } %>
-<% end %>
 <div id="items">
   <ul>
   <% @restaurants.each do |restaurant| %>

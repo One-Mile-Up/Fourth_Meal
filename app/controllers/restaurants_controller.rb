@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
     User.pending_restaurant_email(@restaurant)
 
     flash.notice = @restaurant.name + " is pending approval."
-    redirect_to root_path
+    redirect_to user_path(current_user)
   end
 
   def update
