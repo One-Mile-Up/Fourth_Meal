@@ -8,35 +8,37 @@
 
 
   <% @dashboard.restaurants.each do |restaurant| %>
-    <%= restaurant.slug %>
-    <%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %>
-    <%= form_for restaurant, url: restaurant_path(restaurant.id), method: "put", html: {multipart: true}  do |f| %>
-      <%= f.label :status %>
-      <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %>
-    <%= f.hidden_field :id, value: restaurant.id %>
-      <%= f.submit "Update Status" %>
-    <% end %>
+    <div>
+      <h3><%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %></h3>
+      <%= restaurant.slug %>
+        <%= form_for restaurant, url: restaurant_path(restaurant.id), method: "put", html: {multipart: true}  do |f| %>
+        <%= f.label :status %>
+        <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %>
+        <%= f.hidden_field :id, value: restaurant.id %>
+        <%= f.submit "Update Status", {:class => "btn btn-success create-new-item btn-sm"}%>
+      <% end %>
+    </div>
+  <% end %>
 
-  <div class="menu-items">
-  <h3>Menu Items</h3>
-  <a id="menu-items"></a>
-  <%= link_to "Create New Menu Item", new_item_path(restaurant.slug), {:class => "btn btn-success create-new-item"} %>
-  <br>
-   <% end %>
-  <br>
+    <div class="menu-items">
+      <h3>Menu Items</h3>
+        <a id="menu-items"></a>
+        <%= link_to "Create New Menu Item", new_item_path(:restaurant_slug), {:class => "btn btn-success create-new-item"} %>
+      <br>
+    </div>
+      <br>
   <table>
-  <% @dashboard.items.each do |item| %>
+    <% @dashboard.items.each do |item| %>
     <tr>
       <% if item.restaurant %>
       <td><%= link_to item.title, item_path(item.restaurant.slug, item.id) %></td>
-      <td><%= link_to "Edit", edit_item_path(item.restaurant.slug, item.id), {:class => "btn btn-warning edit-item" } %></td>
+      <td><%= link_to "Edit", edit_item_path(item.restaurant.slug, item.id), {:class => "btn btn-warning btn-sm edit-item" } %></td>
       <td></td>
-    <% end %>
+      <% end %>
     </tr>
-  <% end %>
-  </table:
-  </div>
-
+    <% end %>
+  </table>
+  
   <div class="categories-list">
     <h3>Categories</h3>
     <a id="categories-list"></a>
@@ -47,11 +49,11 @@
     <% @dashboard.categories.each do |category| %>
       <tr>
         <td><%= link_to category.name, category_path(category.id) %></td>
-        <td><%= link_to "Edit", edit_category_path(category.id), {:class=> "btn btn-warning edit-category" } %></td>
+        <td><%= link_to "Edit", edit_category_path(category.id), {:class=> "btn btn-warning btn-sm edit-category" } %></td>
       </tr>
       <% end %>
+    </table>
   </div>
-  </table>
 
   <div class="orders-list">
     <h3>Orders</h3>
