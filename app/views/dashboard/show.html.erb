@@ -18,14 +18,15 @@
         <%= f.submit "Update Status", {:class => "btn btn-success create-new-item btn-sm"}%>
       <% end %>
     </div>
-  <% end %>
 
+    <br>
     <div class="menu-items">
       <h3>Menu Items</h3>
         <a id="menu-items"></a>
-        <%= link_to "Create New Menu Item", new_item_path(:restaurant_slug), {:class => "btn btn-success create-new-item"} %>
+        <%= link_to "Create New Menu Item", new_item_path(:restaurant_slug), {:class => "btn btn-success"} %>
       <br>
     </div>
+  <% end %>
       <br>
   <table>
     <% @dashboard.items.each do |item| %>
@@ -38,7 +39,7 @@
     </tr>
     <% end %>
   </table>
-  
+
   <div class="categories-list">
     <h3>Categories</h3>
     <a id="categories-list"></a>

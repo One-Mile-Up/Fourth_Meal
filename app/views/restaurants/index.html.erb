@@ -1,3 +1,6 @@
+<% if current_user %>
+<%= link_to "Create a Restaurant", new_restaurant_path, {:class => "btn btn-info" } %>
+<% end %>
 <div id="items">
   <ul>
   <% @restaurants.each do |restaurant| %>
@@ -11,12 +14,12 @@
         <ul class="categories">
             <% restaurant.categories.each do |category| %>
               <li class="glyphicon glyphicon-tag category"></li><li><%= link_to category.name,restaurant_items_path(restaurant.slug, "Categories" => category.id) %></li>
-            <% end %>  
+            <% end %>
         </ul>
       </div>
     </div>
   </div>
   <% end %>
-    
+
   </ul>
 </div>
