@@ -67,4 +67,5 @@ gem 'sorcery'
 gem 'paperclip'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'aws-sdk', '~> 1.25'
-gem 'resque'
+gem 'resque', "~> 1.22.0"
+gem 'resque-pool'
