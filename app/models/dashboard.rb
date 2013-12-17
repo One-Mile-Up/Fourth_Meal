@@ -1,7 +1,7 @@
 class Dashboard
 
   def restaurants
-    Restaurant.all
+    Restaurant.order("status DESC")
   end
 
   def items

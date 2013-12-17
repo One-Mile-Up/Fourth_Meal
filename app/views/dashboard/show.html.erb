@@ -1,70 +1,35 @@
 <div id ="dashboard">
   <h2>Admin Dashboard</h2>
 
-  <%= link_to "Jump To Menu Items", admin_dashboard_path(:anchor =>"menu-items") %> <br>
-  <%= link_to "Jump To Categories List", admin_dashboard_path(:anchor =>"categories-list") %> <br>
   <%= link_to "Jump To Orders List", admin_dashboard_path(:anchor =>"orders-list") %> <br>
-  <%= link_to "Jump To Users List", admin_dashboard_path(:anchor =>"users-list") %>
+  <%= link_to "Jump To Users List", users_path %>
 
-
+<table class="zebra table-hover" id="restaurant-status">
+  <thead>
+    <tr>
+      <th id="tleft">Restaurant Name</th>
+       <th id ="tright" colspan=2>Update Status</th>
+    </tr>
+  </thead>
   <% @dashboard.restaurants.each do |restaurant| %>
     <div>
-      <h3><%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %></h3>
-      <%= restaurant.slug %>
+      <tr>
+      <td><h3 class="restaurant-link"><%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %></h3></td>
         <%= form_for restaurant, url: restaurant_path(restaurant.id), method: "put", html: {multipart: true}  do |f| %>
-        <%= f.label :status %>
-        <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %>
+        <td><p class="status" id="status-label"><%= f.label :status %>
+        <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %></p></td>
         <%= f.hidden_field :id, value: restaurant.id %>
-        <%= f.submit "Update Status", {:class => "btn btn-success create-new-item btn-sm"}%>
-      <% end %>
-  <% end %>
-    </div>
-
-      <br>
-  <table>
-    <% @dashboard.items.each do |item| %>
-    <tr>
-      <% if item.restaurant %>
-      <td><%= link_to item.title, item_path(item.restaurant.slug, item.id) %></td>
-      <td><%= link_to "Edit", edit_item_path(item.restaurant.slug, item.id), {:class => "btn btn-warning btn-sm edit-item" } %></td>
-      <td></td>
+        <td><%= f.submit "Update Status", {:class => "btn btn-success create-new-item btn-sm"}%></td>
       <% end %>
     </tr>
-    <% end %>
+  <% end %>
+    </div>
   </table>
-
-  <div class="categories-list">
-    <h3>Categories</h3>
-    <a id="categories-list"></a>
-    <%= link_to "Create New Category", new_category_path, {:class => "btn btn-success"} %>
-    <br>
-    <br>
-    <table>
-    <% @dashboard.categories.each do |category| %>
-      <tr>
-        <td><%= link_to category.name, category_path(category.id) %></td>
-        <td><%= link_to "Edit", edit_category_path(category.id), {:class=> "btn btn-warning btn-sm edit-category" } %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-
+      <br>
   <div class="orders-list">
     <h3>Orders</h3>
     <a id="orders-list"></a>
     <%= link_to "Order History", orders_path %>
-  </div>
-
-  <div class="users-list">
-    <h3>Users</h3>
-    <a id="users-list"></a>
-    <table>
-     <% @dashboard.users.each do |user| %>
-      <tr>
-        <td><%= link_to user.username, user_path(user.id) %></td>
-      </tr>
-     <% end %>
-    </table>
   </div>
 
 </div>

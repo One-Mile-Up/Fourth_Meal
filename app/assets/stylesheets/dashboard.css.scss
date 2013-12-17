@@ -1,3 +1,65 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#restaurant-status{
+  border-style: solid;
+  border-width: 0px;
+  border-color: #333333;
+  margin-top: 30px;
+}
+
+#restaurant-status td{
+  border-style: solid;
+  border-width: 0px;
+  border-color: #46b8da;
+  padding: 15px;
+  text-align: center;
+}
+
+#restaurant-status th{
+  border-style: solid;
+  border-width: 0px;
+  border-color: #46b8da;
+  padding: 15px;
+  text-align: center;
+  background-color: #68838B;
+}
+
+#tleft{
+  border-top-left-radius: 20px;
+}
+
+#tright{
+  border-top-right-radius: 20px;
+}
+
+.status{
+  position: relative;
+  top: 10px;
+}
+
+.restaurant-link{
+  position: relative;
+  bottom: 5px;
+}
+
+label{
+  color: #428bca;
+}
+
+
+/* Admin dashboard zebra table */
+
+body {
+  font: normal medium/1.4 sans-serif;
+}
+
+  
+#restaurant-status tbody tr:nth-child(odd) {
+  background: #D6D6D6;
+}
+
+#restaurant-status tbody tr:nth-child(even) {
+  background: #ccc;
+}
