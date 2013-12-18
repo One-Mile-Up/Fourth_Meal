@@ -14,7 +14,7 @@
   border-width: 0px;
   border-color: #46b8da;
   padding: 15px;
-  text-align: center;
+  text-align: center; 
 }
 
 #restaurant-status th{
@@ -29,7 +29,6 @@
 #admin{
   margin-top: 20px;
   background-color: #D6D6D6;
-  
 }
 
 #admin-header{
@@ -40,19 +39,19 @@
   bottom: 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  padding-left: 20px;
 }
 
 #admin-header h2{
-  line-height: 10px;
-}
-   
-.admin-table{
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  line-height: 15px;
+  margin-right:10px;
+  position: relative;
+  bottom: 6px;
+  padding-right: 10px;
 }
 
 .users-btn{
-  margin-left: 20px;
+  margin-left: 40px;
   margin-bottom: 15px;
 }
 

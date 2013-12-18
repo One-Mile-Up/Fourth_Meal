@@ -7,6 +7,6 @@
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Your Platable Order"
+          data-description="Your Hunger Gains Order"
           data-amount="<%= @amount.to_i %>"></script>
 <% end %>

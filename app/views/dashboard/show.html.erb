@@ -1,6 +1,6 @@
 <div id ="dashboard">
 
-  <table class="admin-table" id="admin">
+  <table id="admin">
     <thead>
       <tr>
      <th id="admin-header"><h2>Admin Dashboard</h2></th>
@@ -10,7 +10,8 @@
          <tr>
          <tbody>
            <td><%= link_to "Users", users_path, {:class => "users-btn btn btn-success"} %>
-               <%= link_to "Orders List", orders_path,:class => "orders-list-btn btn btn-success" %></td> 
+               <%= link_to "Orders List", orders_path,:class => "orders-list-btn btn btn-success" %>
+           </td> 
          </tr>
          </tbody>
        </div>
@@ -23,14 +24,14 @@
         <th id="tright" colspan=2>Update Status</th>
       </tr>
     </thead>
-    
     <% @dashboard.restaurants.each do |restaurant| %>
       <div>
         <tr>
           <td><h3 class="restaurant-link"><%= link_to restaurant.name, restaurant_dashboard_path(restaurant.slug) %></h3></td>
           <%= form_for restaurant, url: restaurant_path(restaurant.id), method: "put", html: {multipart: true}  do |f| %>
             <td><p class="status" id="status-label"><%= f.label :status %>
-            <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %></p></td>
+            <%= f.select(:status, ["Pending", "Declined", "Approved", "Deactivated"]) %></p>
+            </td>
             <%= f.hidden_field :id, value: restaurant.id %>
             <td><%= f.submit "Update Status", {:class => "btn btn-success create-new-item btn-sm"}%></td>
           <% end %>
