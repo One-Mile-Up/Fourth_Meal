@@ -23,4 +23,10 @@ class Restaurant < ActiveRecord::Base
     status != "Approved"
   end
 
+  def orders
+    items.map do |item|
+      item.orders.first
+    end
+  end
+
 end
