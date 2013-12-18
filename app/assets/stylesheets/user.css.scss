@@ -1,0 +1,16 @@
+body {
+  font: normal medium/1.4 sans-serif;
+}
+
+  
+ tbody tr:nth-child(odd) {
+  background: #D6D6D6;
+}
+ tbody tr:nth-child(even) {
+  background: #ccc;
+}
+
+#user-color{
+  color: #428bca;
+}
+

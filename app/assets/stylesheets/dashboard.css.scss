@@ -2,11 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#restaurant-status{
+#restaurant-status {
   border-style: solid;
   border-width: 0px;
   border-color: #333333;
   margin-top: 30px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 #restaurant-status td{
@@ -24,6 +26,41 @@
   padding: 15px;
   text-align: center;
   background-color: #68838B;
+}
+
+#admin{
+  margin-top: 20px;
+  background-color: #D6D6D6;
+  
+}
+
+#admin-header{
+  background-color: #68838B;
+  padding-left: 5px;
+  padding-right: 5px;
+  position: relative;
+  bottom: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#admin-header h2{
+  line-height: 10px;
+}
+
+.admin-table{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.users-btn{
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.orders-list-btn{
+  margin-left: 50px;
+  margin-bottom: 15px;
 }
 
 #tleft{

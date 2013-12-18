@@ -1,20 +1,17 @@
 <h1>All users</h1>
 
-<table>
+<table class="zebra table-hover">
   <thead>
-    <tr>
+    <tr id="admin-header">
       <th>User</th>
       <th>Email</th>
       <th>Admin</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
+      <tr id="user-color">
         <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.admin %></td>
