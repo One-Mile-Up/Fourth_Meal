@@ -212,7 +212,7 @@ restaurant10 = {name: "Kytrinyx Steakhouse", slug: "kytrinyx-steakhouse",
 
 restaurants = [restaurant1, restaurant2, restaurant3,restaurant4, restaurant5, restaurant6,restaurant7, restaurant8, restaurant9, restaurant10]
 
-restaurants.each do |restaurant| 
+restaurants.each do |restaurant|
   puts "starting new restaurant maker job"
   Resque.enqueue(RestaurantMaker, restaurant[:name], restaurant[:description], restaurant[:slug], restaurant[:status])
   puts "finishing restaurant maker job"

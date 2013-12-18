@@ -12,12 +12,12 @@ class RestaurantMaker
 
     num_of_items.times do |n|
       puts "Creating Item Staging job #{n} for #{@restaurant.name}"
-      Resque.enqueue(ItemStager, id)
+      Resque.enqueue(ItemStager, id, n)
     end
 
     num_of_catgories.times do |n|
       puts "Creating Category Staging job #{n} for #{@restaurant.name}"
-      Resque.enqueue(CategoryStager, id)
+      Resque.enqueue(CategoryStager, id, n)
     end
     puts "Restaurant Job Complete"
   end

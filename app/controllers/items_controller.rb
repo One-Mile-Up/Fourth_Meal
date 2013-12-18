@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
     set_order_cookie
     if params["Categories"]
-  	  @category = Category.find(params["Categories"])
+  	  @category = current_restaurant.categories.find(params["Categories"])
   	  @items = current_items.find_all {|item| item.categories.include? @category}
     else
   	  @items = current_items
@@ -27,26 +27,17 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    if params[:restaurant_slug]
-      @restaurant = Restaurant.find_by(slug: params[:restaurant_slug])
-      @categories = Category.where( restaurant: @restaurant)
-    else
-      @categories = Category.all
-    end
+    @categories = current_restaurant.categories
   end
 
   def edit
     @item = Item.find(params[:id])
     @restaurant = @item.restaurant
-    if @restaurant
-      @categories = Category.where( restaurant: @restaurant)
-    else
-      @categories = Category.all
-    end
+    @categories = @restaurant.categories
   end
 
   def retire
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
     @item.active = false
     @item.save
 
