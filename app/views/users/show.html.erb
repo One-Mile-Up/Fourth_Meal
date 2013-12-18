@@ -11,7 +11,7 @@
 
 <h2>User Dashboard</h2>
 
-<h3>Manage my Restaurants</h3>
+<h2>Manage my Restaurants</h2>
 <div id="user_restaurants">
   <% if current_user %>
     <table>
@@ -24,10 +24,51 @@
   <% if current_user %>
 <%= link_to "Create a Restaurant", new_restaurant_path, {:class => "btn btn-sm btn-info" } %>
 <% end %>
-
 </div>
 
-<h2>Recent Orders</h2>
+<h3>My Restaurant's Orders</h3>
+  <div id="restaurant_owner_orders">
+    <% if current_user.restaurants %>
+    <% current_user.restaurants.each do |restaurant| %>
+    <h3><%= restaurant.name %></h3>
+    <% order_array = restaurant.orders.each_with_object([]) do |order, array|%>
+    <% array << order %>
+    <% end %>
+  <% order_array.uniq.each do |order| %>
+
+  <h4>Order #<%= order.id %></h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Dish</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <% order.items.each do |item| %>
+  <tbody>
+  <tr>
+    <td><%= item.title %></td>
+    <td><%= item.description %></td>
+    <td><%= print_price(item.price) %></td>
+    <td>
+    <% item.categories.each do |category| %>
+        <%= category.name %>
+    <% end %>
+    </td>
+  </tr>
+  </tbody>
+<% end %>
+  </table>
+  <p>Order Status: <%= order.status %></p>
+  <% end %>
+  <% end %>
+  <% end %>
+
+  </div>
+
+<h2>My Recent Orders</h2>
 <hr>
 <div id="recent_orders">
   <% @recent_orders.each do |order| %>

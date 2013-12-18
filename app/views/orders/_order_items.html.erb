@@ -1,0 +1,14 @@
+<% items.each do |item| %>
+  <tbody>
+  <tr>
+    <td><%= item.title %></td>
+    <td><%= item.description %></td>
+    <td><%= print_price(item.price) %></td>
+    <td>
+    <% item.categories.each do |category| %>
+        <%= category.name %>
+    <% end %>
+    </td>
+  </tr>
+  </tbody>
+<% end %>
