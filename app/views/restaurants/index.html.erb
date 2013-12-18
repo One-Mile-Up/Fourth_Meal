@@ -1,7 +1,11 @@
 <div class="jumbotron">
   <h1>Welcome to Hunger Gains!</h1>
   <p>...may the odds be ever in your flavor.</p>
+    <% if current_user %>
+    <%= link_to "My Account", user_path(current_user), {:class => "btn btn-primary btn-lg"} %>
+    <% else %>
     <%= link_to "Sign up now", login_path, {:class => "btn btn-primary btn-lg login"} %>
+    <% end %>
   </p>
 </div>
 
