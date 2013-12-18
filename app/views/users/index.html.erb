@@ -1,8 +1,8 @@
 <h1>All users</h1>
 
-<table class="zebra table-hover">
+<table id="users-table" class="zebra table-hover">
   <thead>
-    <tr id="admin-header">
+    <tr id="users-header">
       <th>User</th>
       <th>Email</th>
       <th>Admin</th>
@@ -22,7 +22,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
