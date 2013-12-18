@@ -25,7 +25,14 @@ body {
   display:block;
   float:left;
   width:339px;
-  height:107px;
+  height:116px;
+  padding-top: 16px;
+}
+
+#logo_image{
+  float: left;
+  padding-top: 3px;
+  padding-left: 10px;
 }
 
 main {
@@ -48,7 +55,6 @@ main {
 .jumbotron {
   color: black;
 }
-
 
 footer {
   color:#222;
