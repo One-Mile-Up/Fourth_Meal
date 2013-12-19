@@ -1,7 +1,13 @@
+<% cache @restaurants do %>
 <div class="jumbotron">
   <h1>Welcome to Hunger Gains!</h1>
   <p>...may the odds be ever in your flavor.</p>
-  <p><a class="btn btn-primary btn-lg" role="button">Sign up now</a></p>
+    <% if current_user %>
+    <%= link_to "My Account", user_path(current_user), {:class => "btn btn-primary btn-lg"} %>
+    <% else %>
+    <%= link_to "Sign up now", login_path, {:class => "btn btn-primary btn-lg login"} %>
+    <% end %>
+  </p>
 </div>
 
 <div id="items">
@@ -9,14 +15,15 @@
   <% @restaurants.each do |restaurant| %>
   <li id="item_<%= restaurant.id %>" class="item">
   <div class="item-wrapper">
+     <%= image_tag "http://robohash.org/#{restaurant.id}?size=200x200", {:class => "item-show-image"} %><br/>
     <div class="item-details">
       <%= link_to restaurant.name, restaurant_items_path(restaurant.slug), class: "title" %>
       <p><%= truncate(restaurant.description, length: 25) %>
       </p>
       <div>
         <ul class="categories">
-            <% restaurant.categories.each do |category| %>
-              <li class="glyphicon glyphicon-tag category"></li><li><%= link_to category.name,restaurant_items_path(restaurant.slug, "Categories" => category.id) %></li>
+            <% restaurant.categories.take(5).each do |category| %>
+              <li class="glyphicon glyphicon-tag category"></li><li><%= link_to truncate(category.name, length: 25), restaurant_items_path(restaurant.slug, "Categories" => category.id) %></li>
             <% end %>
         </ul>
       </div>
@@ -26,3 +33,4 @@
 
   </ul>
 </div>
+<% end %>

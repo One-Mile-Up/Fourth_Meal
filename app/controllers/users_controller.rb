@@ -51,7 +51,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    username = @user.username
     @user.destroy
+    flash.notice = "User #{username} has been removed"
+    redirect_to users_path
   end
 
   private

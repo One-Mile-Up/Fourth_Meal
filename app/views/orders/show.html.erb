@@ -20,21 +20,25 @@
 
   <% order_items.each do |order_item| %>
     <div id="restaurant_<%= restaurant.id%>">
-      <tbody>
-    <% item = order_item.item %>
-    <tr id="item_<%= item.id %>">
-      <td class="item-title"><%= link_to item.title, item_path(restaurant.slug,  item.id)  %></td>
-      <td><%= item.description %></td>
-      <td><%= print_price(item.price) %></td>
+    <tbody>
+      <% item = order_item.item %>
+      <tr id="item_<%= item.id %>">
+        <td class="item-title"><%= link_to item.title, item_path(restaurant.slug,  item.id)  %></td>
+        <td><%= item.description %></td>
+        <td><%= print_price(item.price) %></td>
 
-      <%= form_for order_item do |f| %>
-       <td><%= f.number_field :quantity %>
-         <%= f.submit "Adjust Quantity", {:class => "btn btn-success"} %></td>
-        <% end %>
-      <td>
-        <%= link_to "x", order_item_path(order_item), {method: 'delete', :class => "btn btn-danger remove-item", id: 'remove_item'} %></td>
-    </tr>
-  </tbody>
+        <td>
+          <%= form_for order_item, :url => order_item_path(order_item), :method => :put do |f| %>
+            <%= f.number_field :quantity %>
+            <%= f.submit "Adjust Quantity", {:class => "btn btn-success"} %>
+          <% end %>
+        </td>
+        
+        <td>
+          <%= link_to "x", order_item_path(order_item), {method: 'delete', :class => "btn btn-danger remove-item", id: 'remove_item'} %>
+        </td>
+      </tr>
+    </tbody>
 </div>
   <% end %>
   <% end %>

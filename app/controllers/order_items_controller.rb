@@ -3,7 +3,7 @@ class OrderItemsController < ApplicationController
     order_item = OrderItem.find(params[:id])
 
     if order_item.update(order_item_params)
-      redirect_to order_item.order, notice: 'Your item was updated.'
+      redirect_to :back, notice: 'Your item was updated.'
     else
       redirect_to order_item.order, alert: 'There was an error.'
     end

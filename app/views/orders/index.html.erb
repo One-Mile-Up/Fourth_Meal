@@ -8,23 +8,24 @@
         <th>Dish</th>
         <th>Description</th>
         <th>Price</th>
-        <th>Categories</th>
+        <th>Category</th>
       </tr>
     </thead>
     <% items = order.items %>
     <% items.each do |item| %>
-    <tbody>
-    <tr>
-      <td><%= item.title %></td>
-      <td><%= item.description %></td>
-      <td><%= print_price(item.price) %></td>
-      <td>
-      <% item.categories.each do |category| %>
-          <%= category.name %>
-          <% end %></td>
-    </tr>
-    </tbody>
+  <tbody>
+  <tr>
+    <td><%= item.title %></td>
+    <td><%= item.description %></td>
+    <td><%= print_price(item.price) %></td>
+    <td>
+    <% item.categories.each do |category| %>
+        <%= category.name %>
     <% end %>
+    </td>
+  </tr>
+  </tbody>
+<% end %>
   </table>
   <p>Order Status: <%= order.status %></p>
   <% end %>

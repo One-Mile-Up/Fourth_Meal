@@ -1,11 +1,13 @@
 <h1> <%=@restaurant.name%> </h1>
 
 <div class="select-menu">
-	<%= form_tag(restaurant_items_path(@restaurant.slug), method: "get", class:"select-category") do %>
-  <%= category_selection(@category, @categories)%>
-    <%= submit_tag "Browse by Category", {:class => "btn btn-info"} %>
+	<div><%= form_tag(restaurant_items_path(@restaurant.slug), method: "get", class:"select-category") do %></div>
+  <div><%= category_selection(@category, @categories)%>
+    <%= submit_tag "Browse by Category", {:class => "btn btn-info"} %></div>
 	<% end %>
+  <div>
     <%= link_to "View All", restaurant_items_path(@restaurant.slug), {:class => "btn btn-info view-all"} %>
+  </div>
 </div>
 
 <div id="items">
@@ -13,7 +15,9 @@
 	  <% @items.each do |item| %>
 	  <li id="item_<%= item.id %>" class="item">
     <div class="item-wrapper">
+
       <%= image_tag "http://robohash.org/#{item.id}?size=200x200", {:class => "item-show-image"} %><br/>
+
     <div class="item-details">
       <a href="<%= item_path(item.restaurant.slug, item.id) %>" class="title"><%= item.title %></a>
        <p> <%= item.description %></p>
