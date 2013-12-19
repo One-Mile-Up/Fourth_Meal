@@ -19,6 +19,10 @@
   bottom: 11px;
 }
 
+
+
+/* CSS for Modal pop-up for Easter egg */
+
 #overlay {
      visibility: hidden;
      position: absolute;
@@ -28,8 +32,4 @@
      height:100%;
      text-align:center;
      z-index: 1000;
-}
-
-#overlay img{
-    
 }
