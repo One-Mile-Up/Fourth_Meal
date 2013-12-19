@@ -180,34 +180,35 @@ def make_description(number=140)
   return description
 end
 
-restaurant1 = { name:"Billy's BBQ", slug:"billys-bbq",
+30.times do |n|
+restaurant1 = { name:"Billy's BBQ #{n}", slug:"billys-bbq",
 	     description: make_description,status: "Approved"}
 
-restaurant2 = {name: "Dive Bar", slug: "dive-bar",
+restaurant2 = {name: "Dive Bar #{n}", slug: "dive-bar",
 	       description: make_description, status: "Approved"}
 
-restaurant3 = {name: "Hacienda Pequeen", slug: "hacienda-pequeen",
+restaurant3 = {name: "Hacienda Pequeen #{n}", slug: "hacienda-pequeen",
 	       description:  make_description, status: "Approved"}
 
-restaurant4 = {name: "Rolen's Pizza", slug: "rolens-pizza",
+restaurant4 = {name: "Rolen's Pizza #{n}", slug: "rolens-pizza",
 	       description: make_description, status: "Approved"}
 
-restaurant5 = {name: "Go Pho Yourself", slug: "go-pho-yourself",
+restaurant5 = {name: "Go Pho Yourself #{n}", slug: "go-pho-yourself",
 	       description: make_description, status: "Approved" }
 
-restaurant6 = {name: "Lauren's Candy Shop", slug: "laurens-candy-shop",
+restaurant6 = {name: "Lauren's Candy Shop #{n}", slug: "laurens-candy-shop",
 	       description: make_description, status: "Approved" }
 
-restaurant7 = {name: "Homer's Doughnut Shop", slug: "homers-doughnut-shop",
+restaurant7 = {name: "Homer's Doughnut Shop #{n}", slug: "homers-doughnut-shop",
 	       description: make_description, status: "Approved" }
 
-restaurant8 = {name: "Casimir's Cupcakes", slug: "casimirs-cupcakes",
+restaurant8 = {name: "Casimir's Cupcakes #{n}", slug: "casimirs-cupcakes",
 	       description: make_description, status: "Approved" }
 
-restaurant9 = {name: "Frank Make Toast", slug: "frank-make-toast",
+restaurant9 = {name: "Frank Make Toast #{n}", slug: "frank-make-toast",
 	        description: make_description, status: "Approved" }
 
-restaurant10 = {name: "Kytrinyx Steakhouse", slug: "kytrinyx-steakhouse",
+restaurant10 = {name: "Kytrinyx Steakhouse #{n}", slug: "kytrinyx-steakhouse",
 		description: make_description, status: "Approved" }
 
 restaurants = [restaurant1, restaurant2, restaurant3,restaurant4, restaurant5, restaurant6,restaurant7, restaurant8, restaurant9, restaurant10]
@@ -218,6 +219,7 @@ restaurants.each do |restaurant|
   puts "finishing restaurant maker job"
 end
 
+end
 
 
 usr = User.new({username: 'admin', email: 'admin@example.com', password: 'password'})
