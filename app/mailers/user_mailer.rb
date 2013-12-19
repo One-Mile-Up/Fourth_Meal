@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def welcome_email(user)
     @user = user
     @url = "hunger-gains.herokuapp.com/login"
-    mail(to: @user.email, subject: "Welcome to Platable")
+    mail(to: @user.email, subject: "Welcome to Hunger Gains")
   end
 
   def order_email(user, order)
@@ -28,9 +28,9 @@ class UserMailer < ActionMailer::Base
     @admin = admin
     @restaurant = restaurant
     @url = "hunger-gains.herokuapp.com"
-    puts "Sending Pendin Restaurant Email"
+    puts "Sending Pending Restaurant Email"
     mail(to:admin.email, subject: "Restaurant: #{@restaurant.name} is waiting to be approved")
-    puts "Sent Pendin Restaurant Email"
+    puts "Sent Pending Restaurant Email"
   end
 
   def declined_restaurant_email(user, restaurant)
