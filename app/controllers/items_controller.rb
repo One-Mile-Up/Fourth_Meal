@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @restaurant = current_restaurant
     @categories = current_restaurant.categories
   end
 
